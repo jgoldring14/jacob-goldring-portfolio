@@ -61,11 +61,11 @@ Off the clock it's dystopian novels and movie nights with my wife and our cats. 
 
 ### About this site
 
-This repo is my portfolio at [jacobharv.dev](https://jacobharv.dev). It's a static Next.js 14 site styled with Tailwind, with framer-motion for the animations.
+This repo is my portfolio at [jacobharv.dev](https://jacobharv.dev). It's a static Next.js 16 site on React 19 with Tailwind 4 for styles and Motion for the animations. It builds on Node 26.
 
 ```bash
 npm install
 npm run dev
 ```
 
-`npm run build` writes the static site to `out`. Every push to `main` deploys to Netlify, and `netlify.toml` holds the build settings.
+`npm run lint` checks the code and `npm run build` writes the static site to `out`. Every push to `main` deploys to Netlify, and `netlify.toml` holds the build settings.
