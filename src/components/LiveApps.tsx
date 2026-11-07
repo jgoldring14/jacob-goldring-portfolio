@@ -15,6 +15,8 @@ type LiveApp = {
   description: string
   myPart: string
   tech: Array<string>
+  /** What the chips list, read to screen readers. Defaults to what it's built with. */
+  techLabel?: string
   links: Array<AppLink>
 }
 
@@ -26,7 +28,7 @@ const apps: Array<LiveApp> = [
     description:
       'Find night markets and pop-ups near you. Vendors book their spot and talk to the host in the same app.',
     myPart: 'Full stack features plus every build and store release',
-    tech: ['Expo', 'React Native', 'TypeScript', 'Supabase'],
+    tech: ['Expo', 'React Native', 'TypeScript', 'Tamagui', 'Supabase'],
     links: [
       {
         label: 'App Store',
@@ -45,7 +47,7 @@ const apps: Array<LiveApp> = [
     description:
       'For the people who run markets. Hosts set up their spots and pick their vendors right from their phone.',
     myPart: 'Full stack features on the same backend as Vamo',
-    tech: ['Expo', 'React Native', 'TypeScript', 'Supabase'],
+    tech: ['Expo', 'React Native', 'TypeScript', 'Tamagui', 'Supabase'],
     links: [
       {
         label: 'App Store',
@@ -63,15 +65,16 @@ const apps: Array<LiveApp> = [
     icon: imageVamoIcon,
     description: 'Everything the apps do right in your browser.',
     myPart: 'Full stack features and web deploys',
-    tech: ['Next.js', 'TypeScript', 'Tailwind', 'Supabase'],
+    tech: ['Next.js', 'TypeScript', 'Tailwind', 'shadcn/ui', 'Supabase'],
     links: [{ label: 'hellovamo.app', href: 'https://hellovamo.app' }],
   },
   {
     name: 'Mahalo Banking',
     audience: 'For credit unions',
     description: 'Digital banking that credit unions run on.',
-    myPart: 'React Native and web UI on top of C# .NET APIs and SQL',
-    tech: ['React Native', 'C#', '.NET', 'SQL'],
+    myPart: 'Full stack features from the C# .NET APIs to the app screens',
+    tech: ['Mobile app', 'Admin site', 'APIs', 'Database'],
+    techLabel: 'Parts I work on',
     links: [],
   },
 ]
@@ -108,7 +111,7 @@ function AppCard({ app }: { app: LiveApp }) {
       </div>
       <ChipList
         items={app.tech}
-        aria-label="Built with"
+        aria-label={app.techLabel ?? 'Built with'}
         className="mt-6 flex-auto content-start gap-2"
       />
       {app.links.length > 0 && (

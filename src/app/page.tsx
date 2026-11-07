@@ -1,5 +1,6 @@
 import { type Metadata } from 'next'
 import Image from 'next/image'
+import clsx from 'clsx'
 
 import { DropLetters, WordCascade } from '@/components/AnimatedText'
 import { AppIconFlip } from '@/components/AppIconFlip'
@@ -27,15 +28,25 @@ const mahaloWork = [
   'SQL Server',
   'React Native',
   'Admin tools',
+  'Security and encryption',
 ]
 
-const stack = [
+const stack: Array<{
+  id: string
+  title: string
+  items: string
+  wide?: boolean
+}> = [
   {
     id: 'mobile',
     title: 'Mobile',
-    items: 'React Native, Expo, TypeScript, Redux Toolkit, React Native Web',
+    items: 'React Native, Expo, Expo Router, TypeScript, Tamagui, Reanimated',
   },
-  { id: 'web', title: 'Web', items: 'Next.js, React, Vue, Tailwind, Figma' },
+  {
+    id: 'web',
+    title: 'Web',
+    items: 'Next.js, React, React Native Web, Vue, Tailwind, shadcn/ui',
+  },
   {
     id: 'api',
     title: 'API',
@@ -45,6 +56,13 @@ const stack = [
     id: 'data',
     title: 'Data',
     items: 'SQL Server, PostgreSQL, Supabase, MySQL, SQLite',
+  },
+  {
+    id: 'libraries',
+    title: 'Go-to libraries',
+    items:
+      'Redux Toolkit, React Hook Form, Zod, Stripe, Mapbox, i18next, date-fns, Lottie',
+    wide: true,
   },
 ]
 
@@ -244,11 +262,20 @@ function StackSection() {
         eyebrow="Stack"
         title="What I reach for"
         className="mt-24 sm:mt-32 lg:mt-40"
-      />
+      >
+        <p>
+          I reach for stable libraries with big communities behind them.
+          Here&apos;s what I use most.
+        </p>
+      </SectionIntro>
       <Container className="mt-16">
         <FadeInStagger className="grid grid-cols-1 gap-8 sm:grid-cols-2">
           {stack.map((group) => (
-            <FadeIn key={group.id} blur className="flex">
+            <FadeIn
+              key={group.id}
+              blur
+              className={clsx('flex', group.wide && 'sm:col-span-2')}
+            >
               <article className="glass glow flex w-full flex-col rounded-[1.75rem] p-8">
                 <h3 className="font-display text-2xl font-semibold text-ink">
                   {group.title}
