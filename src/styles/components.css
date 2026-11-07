@@ -206,18 +206,20 @@
   /*
    * Entrances that play on load in pure CSS, so they show on first paint without
    * waiting for JavaScript. Headline words drift up and come into focus one after
-   * another (--i is the word's beat). Other blocks follow after --d. The easing is
-   * gentle on purpose so nothing looks like it drops in. Transform, opacity and
+   * another (--i is the word's beat). Other blocks follow after --d. The blur is light
+   * and clears halfway through, so text is sharp for the rest of its drift. The easing
+   * is gentle on purpose so nothing looks like it drops in. Transform, opacity and
    * filter only, so it stays smooth.
    */
   @keyframes word-rise {
     from {
       opacity: 0;
       transform: translateY(0.25em);
-      filter: blur(16px);
+      filter: blur(6px);
     }
     50% {
       opacity: 1;
+      filter: blur(0);
     }
     to {
       opacity: 1;
@@ -230,7 +232,10 @@
     from {
       opacity: 0;
       transform: translateY(0.45em);
-      filter: blur(10px);
+      filter: blur(4px);
+    }
+    50% {
+      filter: blur(0);
     }
     to {
       opacity: 1;
@@ -243,7 +248,10 @@
     from {
       opacity: 0;
       transform: scale(0.92);
-      filter: blur(12px);
+      filter: blur(6px);
+    }
+    50% {
+      filter: blur(0);
     }
     to {
       opacity: 1;

@@ -112,10 +112,9 @@ function Hero() {
             style={{ '--d': '900ms' }}
           >
             I build apps people use every day, from the database all the way to
-            the screen you tap. By day I work on a banking app that credit
-            unions put their own name on. After hours I&apos;m building Vamo, a
-            startup I <span className="whitespace-nowrap">co-founded</span> for
-            local markets.
+            the screen you tap. By day I work on the app credit unions choose
+            for their members’ everyday banking. After hours I build Vamo. The
+            best local food and markets in any city, one tap away.
           </p>
           <div className="rise" style={{ '--d': '1050ms' }}>
             <ProfileActions className="mt-10" />
