@@ -1,0 +1,8 @@
+# Netlify builds the static export from main on every push.
+# These settings override anything set in the Netlify UI.
+[build]
+  command = "npm run build"
+  publish = "out"
+
+[build.environment]
+  NODE_VERSION = "22"
