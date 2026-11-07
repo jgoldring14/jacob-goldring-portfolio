@@ -1,7 +1,8 @@
-import { Fragment } from 'react'
 import { type Metadata } from 'next'
 import Image from 'next/image'
+import clsx from 'clsx'
 
+import { DropLetters, WordCascade } from '@/components/AnimatedText'
 import { AppIconFlip } from '@/components/AppIconFlip'
 import { ChipList } from '@/components/ChipList'
 import { Container } from '@/components/Container'
@@ -27,15 +28,25 @@ const mahaloWork = [
   'SQL Server',
   'React Native',
   'Admin tools',
+  'Security and encryption',
 ]
 
-const stack = [
+const stack: Array<{
+  id: string
+  title: string
+  items: string
+  wide?: boolean
+}> = [
   {
     id: 'mobile',
     title: 'Mobile',
-    items: 'React Native, Expo, TypeScript, Redux Toolkit, React Native Web',
+    items: 'React Native, Expo, Expo Router, TypeScript, Tamagui, Reanimated',
   },
-  { id: 'web', title: 'Web', items: 'Next.js, React, Vue, Tailwind, Figma' },
+  {
+    id: 'web',
+    title: 'Web',
+    items: 'Next.js, React, React Native Web, Vue, Tailwind, shadcn/ui',
+  },
   {
     id: 'api',
     title: 'API',
@@ -45,6 +56,13 @@ const stack = [
     id: 'data',
     title: 'Data',
     items: 'SQL Server, PostgreSQL, Supabase, MySQL, SQLite',
+  },
+  {
+    id: 'libraries',
+    title: 'Go-to libraries',
+    items:
+      'Redux Toolkit, React Hook Form, Zod, Stripe, Mapbox, i18next, date-fns, Lottie',
+    wide: true,
   },
 ]
 
@@ -77,46 +95,44 @@ function Portrait() {
 
 /**
  * Plays once on load and is pure CSS, so the hero shows on first paint without waiting
- * for JavaScript. Each word of the first line rises in on its own beat, then the
- * gradient line, then everything else. Reduced motion skips it.
+ * for JavaScript. The first line's letters drop in, with the F hopping in late. The
+ * gradient line slides up under it and a band of light sweeps through it once. Then
+ * the text flows in word by word. Reduced motion skips all of it.
  */
 function Hero() {
-  let firstLine = ['Full', 'stack', 'engineer']
-
   return (
     <Container className="mt-16 sm:mt-24 md:mt-32">
       <div className="grid items-center gap-16 lg:grid-cols-[1fr_auto]">
         <div className="max-w-4xl">
           <p className="eyebrow rise">Hi, I&apos;m Jacob</p>
           <h1 className="mt-6 font-display text-[clamp(1.75rem,9vw,2.75rem)] leading-[1.1] font-semibold tracking-tight text-balance text-ink sm:text-7xl sm:tracking-[-0.035em] lg:text-[5rem] lg:leading-[1.05]">
-            <span className="block">
-              {firstLine.map((word, index) => (
-                <Fragment key={word}>
-                  {index > 0 && ' '}
-                  <span className="word-rise" style={{ '--i': index + 1 }}>
-                    {word}
-                  </span>
-                </Fragment>
-              ))}
+            <span className="sr-only">
+              Full stack engineer, Co-founder and CTO
             </span>
-            <span className="sr-only">, </span>
-            <span
-              className="text-gradient word-rise block pb-1"
-              style={{ '--i': firstLine.length + 1 }}
-            >
-              <span className="whitespace-nowrap">Co-founder</span> and CTO
+            <DropLetters
+              text="Full stack engineer"
+              spread={600}
+              hop
+              className="block"
+            />
+            <span aria-hidden="true" className="mask-line">
+              <span
+                className="text-gradient sweep slide-up block pb-1"
+                style={{ '--d': '550ms' }}
+              >
+                <span className="whitespace-nowrap">Co-founder</span> and CTO
+              </span>
             </span>
           </h1>
-          <p
-            className="rise mt-8 max-w-2xl text-xl text-muted"
-            style={{ '--d': '900ms' }}
-          >
-            I build apps people use every day, from the database all the way to
-            the screen you tap. By day I work on the app credit unions choose
-            for their members’ everyday banking. After hours I build Vamo. The
-            best local food and markets in any city, one tap away.
+          <p className="mt-8 max-w-2xl text-xl text-muted">
+            <WordCascade start={1000}>
+              I build apps people use every day, from the database all the way
+              to the screen you tap. By day I work on the app credit unions
+              choose for their members’ everyday banking. After hours I build
+              Vamo. The best local food and markets in any city, one tap away.
+            </WordCascade>
           </p>
-          <div className="rise" style={{ '--d': '1050ms' }}>
+          <div className="rise" style={{ '--d': '1400ms' }}>
             <ProfileActions className="mt-10" />
           </div>
         </div>
@@ -246,11 +262,20 @@ function StackSection() {
         eyebrow="Stack"
         title="What I reach for"
         className="mt-24 sm:mt-32 lg:mt-40"
-      />
+      >
+        <p>
+          I reach for stable libraries with big communities behind them.
+          Here&apos;s what I use most.
+        </p>
+      </SectionIntro>
       <Container className="mt-16">
         <FadeInStagger className="grid grid-cols-1 gap-8 sm:grid-cols-2">
           {stack.map((group) => (
-            <FadeIn key={group.id} blur className="flex">
+            <FadeIn
+              key={group.id}
+              blur
+              className={clsx('flex', group.wide && 'sm:col-span-2')}
+            >
               <article className="glass glow flex w-full flex-col rounded-[1.75rem] p-8">
                 <h3 className="font-display text-2xl font-semibold text-ink">
                   {group.title}

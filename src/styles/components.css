@@ -205,29 +205,11 @@
 
   /*
    * Entrances that play on load in pure CSS, so they show on first paint without
-   * waiting for JavaScript. Headline words drift up and come into focus one after
-   * another (--i is the word's beat). Other blocks follow after --d. The blur is light
-   * and clears halfway through, so text is sharp for the rest of its drift. The easing
-   * is gentle on purpose so nothing looks like it drops in. Transform, opacity and
+   * waiting for JavaScript. Blocks rise into place after --d. The blur is light and
+   * clears halfway through, so text is sharp for the rest of its drift. The easing is
+   * gentle on purpose so nothing looks like it drops in. Transform, opacity and
    * filter only, so it stays smooth.
    */
-  @keyframes word-rise {
-    from {
-      opacity: 0;
-      transform: translateY(0.25em);
-      filter: blur(6px);
-    }
-    50% {
-      opacity: 1;
-      filter: blur(0);
-    }
-    to {
-      opacity: 1;
-      transform: none;
-      filter: blur(0);
-    }
-  }
-
   @keyframes rise {
     from {
       opacity: 0;
@@ -260,6 +242,161 @@
     }
   }
 
+  /*
+   * Title letters fall in, squash as they land, bounce once and settle, like a cartoon.
+   * Each keyframe sets the easing into the next one: speeding up on the way down and
+   * slowing at the top of the bounce. No blur, so big text stays smooth.
+   */
+  @keyframes drop-letter {
+    0% {
+      opacity: 0;
+      transform: translateY(-1.3em) scale(0.92, 1.14);
+      animation-timing-function: cubic-bezier(0.55, 0, 1, 0.45);
+    }
+    45% {
+      opacity: 1;
+      transform: translateY(0) scale(1.14, 0.8);
+      animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    68% {
+      transform: translateY(-0.14em) scale(0.96, 1.05);
+    }
+    84% {
+      transform: translateY(0) scale(1.03, 0.97);
+    }
+    100% {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  /* The same fall with about half the squash, for page titles. */
+  @keyframes drop-letter-soft {
+    0% {
+      opacity: 0;
+      transform: translateY(-1em) scale(0.95, 1.08);
+      animation-timing-function: cubic-bezier(0.55, 0, 1, 0.45);
+    }
+    45% {
+      opacity: 1;
+      transform: translateY(0) scale(1.08, 0.88);
+      animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    70% {
+      transform: translateY(-0.07em) scale(0.98, 1.02);
+    }
+    100% {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  /*
+   * The hero's first letter shows up late: it crouches, hops in from the left in two
+   * bounces, skids, leans and straightens up.
+   */
+  @keyframes hop-letter {
+    0% {
+      opacity: 0;
+      transform: translate(-2.6em, 0);
+    }
+    6% {
+      opacity: 1;
+      transform: translate(-2.6em, 0) scale(1.12, 0.84);
+    }
+    20% {
+      transform: translate(-1.75em, -0.75em) scale(0.9, 1.14);
+      animation-timing-function: cubic-bezier(0.55, 0, 1, 0.45);
+    }
+    33% {
+      transform: translate(-0.95em, 0) scale(1.16, 0.8);
+    }
+    46% {
+      transform: translate(-0.45em, -0.4em) scale(0.94, 1.08);
+      animation-timing-function: cubic-bezier(0.55, 0, 1, 0.45);
+    }
+    58% {
+      transform: translate(-0.1em, 0) scale(1.12, 0.86);
+    }
+    70% {
+      transform: translate(0.06em, 0) skewX(-10deg);
+    }
+    82% {
+      transform: translate(-0.02em, 0) skewX(5deg);
+    }
+    92% {
+      transform: skewX(-2deg);
+    }
+    100% {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  /* Falls in tilted, lands on its corner and rocks until it stands straight. */
+  @keyframes wobble-letter {
+    0% {
+      opacity: 0;
+      transform: translateY(-1.4em) rotate(-28deg);
+      animation-timing-function: cubic-bezier(0.55, 0, 1, 0.45);
+    }
+    36% {
+      opacity: 1;
+      transform: translateY(0) rotate(16deg);
+    }
+    52% {
+      transform: rotate(-10deg);
+    }
+    66% {
+      transform: rotate(6deg);
+    }
+    79% {
+      transform: rotate(-3deg);
+    }
+    90% {
+      transform: rotate(1deg);
+    }
+    100% {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  /* A line slides up out of a .mask-line, which hides it until it rises. */
+  @keyframes slide-up {
+    from {
+      transform: translateY(120%);
+    }
+    to {
+      transform: none;
+    }
+  }
+
+  /* One soft band of light passes through gradient text, then it's gone. */
+  @keyframes sweep {
+    from {
+      background-position:
+        160% 0,
+        0 0;
+    }
+    to {
+      background-position:
+        -60% 0,
+        0 0;
+    }
+  }
+
+  @keyframes word-in {
+    from {
+      opacity: 0;
+      transform: translateY(0.5em);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
   /* The header settles down from just above the top edge once per page load. */
   @keyframes drop-in {
     from {
@@ -272,10 +409,92 @@
     }
   }
 
-  .word-rise {
+  .drop-letter,
+  .drop-letter-soft,
+  .hop-letter,
+  .wobble-letter {
     display: inline-block;
-    animation: word-rise 1.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
-    animation-delay: calc(var(--i, 0) * 180ms);
+    transform-origin: 50% 100%;
+    animation-delay: var(--d, 0ms);
+  }
+
+  .drop-letter {
+    animation: drop-letter 0.95s both;
+    animation-delay: var(--d, 0ms);
+  }
+
+  .drop-letter-soft {
+    animation: drop-letter-soft 0.8s both;
+    animation-delay: var(--d, 0ms);
+  }
+
+  .hop-letter {
+    animation: hop-letter 1.2s 380ms both;
+  }
+
+  .wobble-letter {
+    transform-origin: 0 100%;
+    animation: wobble-letter 1.3s both;
+    animation-delay: var(--d, 0ms);
+  }
+
+  .mask-line {
+    display: block;
+    overflow: hidden;
+    padding-bottom: 0.12em;
+    margin-bottom: -0.12em;
+  }
+
+  .slide-up {
+    animation: slide-up 1.05s cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation-delay: var(--d, 0ms);
+  }
+
+  /* Gradient text with a band of light parked off to the right until it sweeps. */
+  .sweep {
+    background-image:
+      linear-gradient(
+        100deg,
+        transparent 35%,
+        rgb(255 255 255 / 0.8) 50%,
+        transparent 65%
+      ),
+      linear-gradient(100deg, rgb(var(--primary-text)), rgb(var(--teal-text)));
+    background-image:
+      linear-gradient(
+        100deg,
+        transparent 35%,
+        rgb(255 255 255 / 0.8) 50%,
+        transparent 65%
+      ),
+      linear-gradient(
+        in oklch 100deg,
+        rgb(var(--primary-text)),
+        rgb(var(--teal-text))
+      );
+    background-size:
+      250% 100%,
+      100% 100%;
+    background-repeat: no-repeat;
+    background-position:
+      160% 0,
+      0 0;
+  }
+
+  .slide-up.sweep {
+    animation:
+      slide-up 1.05s cubic-bezier(0.16, 1, 0.3, 1) var(--d, 0ms) both,
+      sweep 1.1s cubic-bezier(0.45, 0, 0.25, 1) var(--sweep, 1400ms) both;
+  }
+
+  .cascade-word {
+    display: inline-block;
+  }
+
+  .cascade-word,
+  .cascade-block {
+    animation: word-in 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+    animation-delay: var(--d, 0ms);
   }
 
   .rise {
@@ -345,10 +564,17 @@
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .word-rise,
     .rise,
     .rise-scale,
-    .drop-in {
+    .drop-in,
+    .drop-letter,
+    .drop-letter-soft,
+    .hop-letter,
+    .wobble-letter,
+    .slide-up,
+    .slide-up.sweep,
+    .cascade-word,
+    .cascade-block {
       animation: none;
     }
   }

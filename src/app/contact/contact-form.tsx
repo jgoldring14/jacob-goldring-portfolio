@@ -4,6 +4,7 @@ import { useState, useId, useEffect } from 'react'
 import Link from 'next/link'
 import ReCAPTCHA from 'react-google-recaptcha'
 
+import { DropLetters } from '@/components/AnimatedText'
 import { Button } from '@/components/Button'
 import { FadeIn } from '@/components/FadeIn'
 import { useTheme } from '@/lib/useTheme'
@@ -104,7 +105,13 @@ export function ContactForm() {
           className="font-display text-2xl font-semibold text-ink"
           role="status"
         >
-          Thanks! Your message is on its way
+          <span className="sr-only">Thanks! Your message is on its way</span>
+          <DropLetters
+            text="Thanks! Your message is on its way"
+            start={150}
+            spread={450}
+            soft
+          />
         </h2>
         <p className="mt-4 text-base text-muted">
           I&apos;ll get back to you at {formValues.email}.
