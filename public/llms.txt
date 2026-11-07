@@ -1,31 +1,31 @@
 # Jacob Goldring
 
-> Full stack engineer and co-founder. Builds banking apps for credit unions by
-> day and is the co-founder and CTO of Vamo, a startup for local markets.
+> Full stack engineer who builds digital banking for credit unions at Mahalo
+> Banking. Also co-founder and CTO of Vamo, a startup for local markets. Works
+> remote from Breckenridge, Colorado.
 
-## About
+## Mahalo Banking (2022 to now)
 
-Jacob Goldring writes mobile apps, the APIs behind them and the data layer
-underneath. His day job is a white-label digital banking platform for credit
-unions, where one codebase ships as a separately themed and separately
-configured product for each credit union. He is also backup on production
-mobile devops.
+Jacob is a Development Engineer 2 at Mahalo Banking. He helped build its online
+banking platform from the ground up as a modern rebuild of the original. One
+codebase becomes a separately themed app for each credit union. He works
+across the whole stack, from React Native and web UI to C# .NET APIs and SQL.
+He built many of the platform's features for neurodivergent members and backs
+up its mobile DevOps.
 
-He is co-founder and CTO of Vamo, which started as a street food discovery app
-and grew into a platform for night markets, farmers markets and pop-ups. It is two
-apps and a website on one backend: the Vamo app for shoppers and vendors, Vamo
-Host for the hosts who run the markets, and a website for both. A host opens
-spaces in Vamo Host, vendors apply and pay for them in Vamo, and shoppers find
-the market, its vendors and its map in Vamo.
+## Vamo (2024 to now)
 
-The Vamo app is live on the App Store and Google Play, with about 200 vendors.
-Vamo Host is on Google Play, with iOS coming soon. Two hosts are live, with
-their first markets in November 2026.
+Vamo started as a street food discovery app and grew into two apps and a
+website for local markets. All three run on one Supabase backend.
 
-Vamo is a two-person company based in Southern California. Jacob and his
-business partner both do a lot of everything. Jacob also handles mobile DevOps,
-SDK and package upgrades and security checks, and works to keep the codebase
-maintainable and well tested.
+- Vamo: for shoppers and vendors. Live on the App Store and Google Play.
+- Vamo Host: for the hosts who run markets. Live on the App Store and Google
+  Play.
+- hellovamo.app: everything the apps do in a browser.
+
+About 200 vendors use Vamo. Vamo is an S corp that operates in Southern
+California. Jacob and his business partner are the whole team. He owns
+mobile DevOps and is building a Square catalog sync for vendor menus.
 
 ## Stack
 

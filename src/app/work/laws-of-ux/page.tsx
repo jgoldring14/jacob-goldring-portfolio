@@ -187,11 +187,12 @@ export default function LawsOfUx() {
               </p>
               <p>
                 Before I built anything I wrote a spec. It covered which ten
-                laws to use, what a finding looks like and what should never get
-                flagged. Then I built the skill from that spec with a little
-                help from Claude and Anthropic&apos;s skill-creator workflow.
-                The main file is about 90 lines. The details live in 19
-                reference files that only load when a review needs them.
+                laws to use and what a finding looks like. It also said what
+                should never get flagged. Then I built the skill from that spec
+                with a little help from Claude and Anthropic&apos;s
+                skill-creator workflow. The main file is about 90 lines. The
+                details live in 19 reference files that only load when a review
+                needs them.
               </p>
               <ul
                 role="list"
@@ -222,8 +223,9 @@ export default function LawsOfUx() {
                 </ListItem>
                 <ListItem title="Platform">
                   It reads package.json or the device frame in a screenshot to
-                  figure out mobile, web or both. Then it loads only the guides
-                  it needs. An Expo app that also ships to the web gets both.
+                  figure out if it&apos;s for mobile or web or both. Then it
+                  loads only the guides it needs. An Expo app that also ships to
+                  the web gets both.
                 </ListItem>
                 <ListItem title="Ten quick checks">
                   One question per law. When a check hits it reads that
@@ -231,15 +233,17 @@ export default function LawsOfUx() {
                   the law gets misused.
                 </ListItem>
                 <ListItem title="Ethics every time">
-                  Pre-checked consent, fake urgency, hidden costs and a cancel
-                  button you can&apos;t find are always Blockers. Apps that
-                  handle money, shopping or social get extra rules on top.
+                  Some patterns are always Blockers. Think pre-checked consent
+                  and fake urgency, or hidden costs and a cancel button you
+                  can&apos;t find. Apps that handle money get extra rules on
+                  top. So do shopping and social apps.
                 </ListItem>
                 <ListItem title="Report">
-                  Every finding lists where it is, the law, what&apos;s wrong
-                  and how to fix it. They&apos;re grouped as Blocker, Should fix
-                  or Nice to have. It also says what it checked and found fine,
-                  plus anything it couldn&apos;t verify without a real device.
+                  Every finding names where it is and which law it breaks. Then
+                  it says what&apos;s wrong and how to fix it. Findings are
+                  sorted into three levels from Blocker down to Nice to have. It
+                  also says what it checked and found fine, plus anything it
+                  couldn&apos;t verify without a real device.
                 </ListItem>
               </List>
               <p className="pt-4">

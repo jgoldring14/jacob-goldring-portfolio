@@ -8,7 +8,6 @@ type Project = {
   description: string
   tech: string
   links: Array<ProjectLink>
-  comingSoon?: string
 }
 
 const projects: Array<Project> = [
@@ -16,7 +15,7 @@ const projects: Array<Project> = [
     name: 'Vamo',
     audience: 'For shoppers and vendors',
     description:
-      'Find night markets, farmers markets and pop-ups near you. See which vendors are coming and follow the market map to any spot. Vendors can apply for a spot and pay for it in the app. They also get their setup time and a group chat for every market. Available on iOS and Android.',
+      'Find local markets and pop-ups near you. See which vendors are coming and follow the market map to any spot. Vendors can apply for a spot and pay for it in the app. They also get their setup time and a group chat for every market. Available on iOS and Android.',
     tech: 'React Native, Expo, TypeScript, Tamagui, Supabase, Redux Toolkit',
     links: [
       {
@@ -33,21 +32,24 @@ const projects: Array<Project> = [
     name: 'Vamo Host',
     audience: 'For hosts',
     description:
-      'Vamo Host is for the people who run markets. Hosts set up spots and prices, review vendor applications, build the market map, plan when vendors arrive and get paid out. It runs on the same backend as the main app. The first live market is in November 2026.',
-    tech: 'React Native, Expo, TypeScript, Supabase, Stripe',
+      'Vamo Host is for the people who run markets. Hosts set up spots and prices and review vendor applications. They build the market map and plan when vendors arrive. Then they get paid out after the market. It runs on the same backend as the main app.',
+    tech: 'React Native, Expo, TypeScript, Supabase',
     links: [
+      {
+        label: 'App Store',
+        href: 'https://apps.apple.com/us/app/vamo-host/id6797667577',
+      },
       {
         label: 'Google Play',
         href: 'https://play.google.com/store/apps/details?id=com.vamo.host',
       },
     ],
-    comingSoon: 'iOS coming soon',
   },
   {
     name: 'Vamo Website',
     audience: 'No download needed',
     description:
-      "Everything the apps do, right in your browser, for shoppers, vendors and hosts. Great if you don't want to download anything. The apps are still the better pick when you're out at a market.",
+      "Everything the apps do right in your browser. It works for shoppers and vendors as well as hosts. Great if you don't want to download anything. The apps are still the better pick when you're out at a market.",
     tech: 'Next.js, TypeScript, Tailwind, Supabase',
     links: [{ label: 'hellovamo.app', href: 'https://hellovamo.app' }],
   },
@@ -91,11 +93,6 @@ function ProjectItem({ project }: { project: Project }) {
             {link.label}
           </Button>
         ))}
-        {project.comingSoon && (
-          <span className="inline-flex h-11 items-center rounded-full px-5 text-sm font-semibold text-muted shadow-neu-inset-sm">
-            {project.comingSoon}
-          </span>
-        )}
       </div>
     </article>
   )

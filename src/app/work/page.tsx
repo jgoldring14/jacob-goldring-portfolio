@@ -71,7 +71,7 @@ export default function Work() {
             it takes to run a company.
           </p>
           <p>
-            We&apos;re based in Southern California and growing. One day
+            Vamo operates in Southern California and we&apos;re growing. One day
             we&apos;d love to be nationwide. We want to help locals share their
             food and culture, and help visitors and tourists find the best
             markets and food around them.

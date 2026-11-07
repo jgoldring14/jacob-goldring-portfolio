@@ -1,33 +1,32 @@
 # Jacob Goldring
 
-Full stack engineer. Co-founder and CTO at Vamo.
-Breckenridge, Colorado. Remote for both.
+Full stack engineer. I build digital banking for credit unions by day and I'm co-founder and CTO of Vamo after hours. I work remote from Breckenridge, Colorado.
 
-I write the mobile app, the API behind it, and the data layer underneath.
+My work goes from the mobile app to the API behind it and down to the data layer.
 
 ---
 
-### Vamo
-
-Vamo started as a street food discovery app and grew into a platform for local markets: two apps and a website on one backend, connecting shoppers, vendors and the hosts who run the markets.
-
-**Vamo** is local markets and the vendors who make them. Shoppers find night markets, farmers markets and pop-ups nearby and follow the market map to any space. Vendors apply for spaces, pay to lock them in and chat with the host from the same app. Two audiences, one app. Live on iOS and Android.
-
-**Vamo Host** is for the hosts who run the markets. Spaces and prices, vendor applications, market maps and payouts. On Google Play, with iOS coming soon. Our first live market runs November 14 and 15, 2026, with 15 vendors taking real payments.
-
-**The website** started as a landing page. It's turning into a third client against the same database, so everything the apps do works in a browser too.
-
-Two of us build this. Ivan is founder and CEO, I'm co-founder and CTO. Mobile and web devops are mine: builds, releases, store submissions, every Expo SDK upgrade, and the pipelines behind all three surfaces.
-
-<a href="https://apps.apple.com/us/app/vamo-discover-street-food/id6737868193"><img src="https://img.shields.io/badge/App_Store-0D96F6?style=for-the-badge&logo=app-store&logoColor=white" /></a>
-<a href="https://play.google.com/store/apps/details?id=com.vamo.app"><img src="https://img.shields.io/badge/Google_Play-414141?style=for-the-badge&logo=google-play&logoColor=white" /></a>
-<a href="https://hellovamo.app"><img src="https://img.shields.io/badge/hellovamo.app-FF6B35?style=for-the-badge&logoColor=white" /></a>
-
 ### Mahalo Banking
 
-Mahalo builds digital banking for credit unions, and no two of them want the same app. So one codebase turns into a different app for each one. Each one gets its own look, settings, integrations and features. When I ship a feature I'm really shipping every version of it that a credit union might turn on.
+Mahalo builds digital banking for credit unions. I helped build our online banking platform from the ground up as a modern rebuild of the original. One codebase turns into a different app for each credit union with its own look and its own mix of features.
 
-I work across all of it: SQL and C#/.NET APIs, the admin tools, and the React Native app members use. I'm also the backup for our mobile devops.
+As a Development Engineer 2 I work across the whole stack, from React Native and web UI to C# .NET APIs and SQL. I built many of our features for neurodivergent members and I back up our mobile DevOps.
+
+### Vamo
+
+Vamo started as a street food discovery app and grew into two apps and a website for local markets. All three are live in production on one Supabase backend.
+
+- **Vamo** is for shoppers and vendors. Shoppers find markets nearby and vendors book their spot in the same app.
+- **Vamo Host** is for the people who run markets. Hosts set up their spots and pick their vendors from their phone.
+- **hellovamo.app** does everything the apps do in a browser.
+
+Vamo is an S corp that operates in Southern California. We hope to go nationwide one day. It's my business partner and me, so we both do a lot of everything. Mobile DevOps is mine, and right now I'm building a Square catalog sync for vendor menus.
+
+<a href="https://apps.apple.com/us/app/vamo-discover-street-food/id6737868193"><img src="https://img.shields.io/badge/Vamo-App_Store-0D96F6?style=for-the-badge&logo=app-store&logoColor=white" /></a>
+<a href="https://play.google.com/store/apps/details?id=com.vamo.app"><img src="https://img.shields.io/badge/Vamo-Google_Play-414141?style=for-the-badge&logo=google-play&logoColor=white" /></a>
+<a href="https://apps.apple.com/us/app/vamo-host/id6797667577"><img src="https://img.shields.io/badge/Vamo_Host-App_Store-0D96F6?style=for-the-badge&logo=app-store&logoColor=white" /></a>
+<a href="https://play.google.com/store/apps/details?id=com.vamo.host"><img src="https://img.shields.io/badge/Vamo_Host-Google_Play-414141?style=for-the-badge&logo=google-play&logoColor=white" /></a>
+<a href="https://hellovamo.app"><img src="https://img.shields.io/badge/hellovamo.app-FF6B35?style=for-the-badge&logoColor=white" /></a>
 
 ---
 
@@ -45,7 +44,7 @@ I work across all of it: SQL and C#/.NET APIs, the admin tools, and the React Na
 **Data**<br>
 <img src="https://skillicons.dev/icons?i=postgres,supabase,mysql,git" height="40" />
 
-Also Expo, SQL Server, Entity Framework, Dapper, React Native Web, EAS and Bitrise.
+Also Expo and EAS plus SQL Server. I use Entity Framework and Dapper on the API side.
 
 ---
 
@@ -56,4 +55,17 @@ Also Expo, SQL Server, Entity Framework, Dapper, React Native Web, EAS and Bitri
 <a href="https://amethyst-gloria-21.tiiny.site/"><img src="https://img.shields.io/badge/Resume-4A4A4A?style=for-the-badge&logo=readdotcv&logoColor=white" /></a>
 <a href="mailto:jacobgoldring14@gmail.com?subject=Hello%20Jacob"><img src="https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white" /></a>
 
-Off the clock: dystopian novels, movie nights with my wife and our cats, and whatever game currently has my attention.
+Off the clock it's dystopian novels and movie nights with my wife and our cats. Plus whatever game has my attention.
+
+---
+
+### About this site
+
+This repo is my portfolio at [jacobharv.dev](https://jacobharv.dev). It's a static Next.js 14 site styled with Tailwind, with framer-motion for the animations.
+
+```bash
+npm install
+npm run dev
+```
+
+`npm run build` writes the static site to `out`. Every push to `main` deploys to Netlify, and `netlify.toml` holds the build settings.

@@ -49,8 +49,8 @@ export default function About() {
           <p>
             I started coding in 2020 with a course I took after work. I was
             hooked, so in 2021 I went all in on Flatiron School&apos;s full-time
-            bootcamp. That meant about 16 hours a day, five or six days a week,
-            learning JavaScript, React, Ruby and Rails.
+            bootcamp. That meant about 16 hours a day for five or six days a
+            week. I learned JavaScript and React plus Ruby on Rails.
           </p>
           <p>
             Since 2022 I&apos;ve built software that credit union members use to
@@ -59,8 +59,9 @@ export default function About() {
             simple for the person holding the phone.
           </p>
           <p>
-            A lot of what I build is private, so I can&apos;t show all of it.
-            What I can share is on the work page.
+            I work remote from Breckenridge, Colorado. A lot of what I build is
+            private, so I can&apos;t show all of it. What I can share is on the
+            work page.
           </p>
         </div>
         <ProfileActions className="mt-10" />
