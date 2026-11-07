@@ -24,7 +24,7 @@ export function SectionIntro({
               <span className="sr-only"> - </span>
             </>
           )}
-          <span className="block font-display text-4xl font-semibold tracking-tight text-ink [text-wrap:balance] sm:text-5xl">
+          <span className="block font-display text-4xl font-semibold tracking-tight text-balance text-ink sm:text-5xl">
             {title}
           </span>
         </h2>

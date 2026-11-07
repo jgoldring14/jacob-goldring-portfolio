@@ -11,16 +11,16 @@ function Portrait() {
   return (
     <Container className="mt-24 sm:mt-32 lg:mt-40">
       <FadeIn>
-        <figure className="glass max-w-md rounded-[2rem] p-4">
+        <figure className="glass max-w-md rounded-4xl p-4">
           <div className="well overflow-hidden rounded-[1.75rem]">
             <Image
               alt="Jacob Goldring"
               src={imageJacobGoldring}
               sizes="(min-width: 640px) 28rem, 100vw"
-              className="aspect-[4/5] w-full object-cover object-[center_38%]"
+              className="aspect-4/5 w-full object-cover object-[center_38%]"
             />
           </div>
-          <figcaption className="px-4 pb-2 pt-5">
+          <figcaption className="px-4 pt-5 pb-2">
             <p className="font-display text-base/6 font-semibold tracking-wide text-ink">
               Jacob Goldring
             </p>

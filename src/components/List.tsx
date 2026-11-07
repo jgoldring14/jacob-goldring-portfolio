@@ -27,14 +27,14 @@ export function List({
         ref={ref}
         role="list"
         className={clsx(
-          'relative text-base text-muted before:absolute before:bottom-3 before:left-[0.6875rem] before:top-3 before:w-0.5 before:rounded-full before:bg-line/30',
+          'relative text-base text-muted before:absolute before:top-3 before:bottom-3 before:left-2.75 before:w-0.5 before:rounded-full before:bg-line/30',
           className,
         )}
       >
         <motion.span
           aria-hidden="true"
           style={{ scaleY: shouldReduceMotion ? 1 : scrollYProgress }}
-          className="absolute bottom-3 left-[0.6875rem] top-3 w-0.5 origin-top rounded-full bg-primary"
+          className="absolute top-3 bottom-3 left-2.75 w-0.5 origin-top rounded-full bg-primary"
         />
         {children}
       </ul>
@@ -54,7 +54,7 @@ export function ListItem({
       <FadeIn blur>
         <span
           aria-hidden="true"
-          className="glass absolute left-0 top-0.5 flex h-6 w-6 items-center justify-center rounded-full"
+          className="glass absolute top-0.5 left-0 flex h-6 w-6 items-center justify-center rounded-full"
         >
           <motion.span
             variants={{ hidden: { scale: 0 }, visible: { scale: 1 } }}

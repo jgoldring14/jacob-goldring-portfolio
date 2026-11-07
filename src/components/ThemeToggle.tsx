@@ -103,11 +103,11 @@ export function ThemeToggle({ className }: { className?: string }) {
       aria-label="Dark mode"
       onClick={toggle}
       className={clsx(
-        'well relative inline-flex h-11 w-[4.75rem] shrink-0 items-center rounded-full p-1 transition-colors',
+        'well relative inline-flex h-11 w-19 shrink-0 items-center rounded-full p-1 transition-colors',
         className,
       )}
     >
-      <span className="flex h-9 w-9 items-center justify-center rounded-full bg-white text-accent shadow-[0_2px_8px_rgb(var(--shadow)/0.22)] transition-transform duration-200 ease-apple-out dark:translate-x-8 dark:bg-white/[0.12] dark:text-primary-text">
+      <span className="flex h-9 w-9 items-center justify-center rounded-full bg-white text-accent shadow-[0_2px_8px_rgb(var(--shadow)/0.22)] transition-transform duration-200 ease-apple-out dark:translate-x-8 dark:bg-white/12 dark:text-primary-text">
         <SunIcon className="h-5 w-5 dark:hidden" />
         <MoonIcon className="hidden h-5 w-5 dark:block" />
       </span>

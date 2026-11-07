@@ -87,12 +87,12 @@ function Section({
 function FindingCard({ finding }: { finding: Finding }) {
   return (
     <div className="well rounded-[1.75rem] p-6">
-      <p className="text-xs font-semibold uppercase tracking-[0.14em] text-muted">
+      <p className="text-xs font-semibold tracking-[0.14em] text-muted uppercase">
         {finding.source}
       </p>
       <div className="mt-4 flex flex-wrap items-center gap-3">
         <span className="eyebrow py-1 text-xs">{finding.severity}</span>
-        <code className="break-all text-sm text-ink">{finding.location}</code>
+        <code className="text-sm break-all text-ink">{finding.location}</code>
       </div>
       <dl className="mt-5 grid grid-cols-[3rem_1fr] gap-x-4 gap-y-3 text-sm">
         <dt className="font-semibold text-ink">Law</dt>
@@ -109,7 +109,7 @@ function FindingCard({ finding }: { finding: Finding }) {
 function Aside() {
   return (
     <FadeIn className="space-y-8 lg:sticky lg:top-28">
-      <div className="glass rounded-[2rem] p-4">
+      <div className="glass rounded-4xl p-4">
         <Image
           src={imageLawsOfUxCover}
           alt="Cover slide of the laws-of-ux carousel: Your users shouldn't need a manual."
@@ -274,7 +274,7 @@ export default function LawsOfUx() {
             </Section>
           </div>
 
-          <aside aria-label="At a glance" className="order-first lg:order-none">
+          <aside aria-label="At a glance" className="order-first lg:order-0">
             <Aside />
           </aside>
         </div>

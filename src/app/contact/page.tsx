@@ -26,7 +26,7 @@ const contactLinks = [
 function ContactDetails() {
   return (
     <FadeIn className="space-y-8">
-      <section className="glass rounded-[2rem] p-8 sm:p-10">
+      <section className="glass rounded-4xl p-8 sm:p-10">
         <h2 className="font-display text-xl font-semibold text-ink">Resume</h2>
         <p className="mt-4 text-base text-muted">
           Want the quick version? Here&apos;s everything on one page.
@@ -42,15 +42,15 @@ function ContactDetails() {
         </Button>
       </section>
 
-      <section className="glass rounded-[2rem] p-8 sm:p-10">
+      <section className="glass rounded-4xl p-8 sm:p-10">
         <h2 className="font-display text-xl font-semibold text-ink">
           Other ways to reach me
         </h2>
         <dl className="mt-6 space-y-4 text-sm">
           {contactLinks.map((item) => (
-            <div key={item.label} className="well rounded-[1.5rem] px-5 py-4">
+            <div key={item.label} className="well rounded-3xl px-5 py-4">
               <dt className="font-semibold text-ink">{item.label}</dt>
-              <dd className="break-words">
+              <dd className="wrap-break-word">
                 <Link
                   href={item.href}
                   target={item.external ? '_blank' : undefined}

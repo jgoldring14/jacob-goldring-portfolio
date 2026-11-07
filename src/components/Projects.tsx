@@ -58,7 +58,7 @@ const projects: Array<Project> = [
 function ProjectItem({ project }: { project: Project }) {
   return (
     <article className="glass glow flex w-full flex-col rounded-[1.75rem] p-6 sm:p-8">
-      <p className="font-display text-xs font-semibold uppercase tracking-[0.14em] text-accent">
+      <p className="font-display text-xs font-semibold tracking-[0.14em] text-accent uppercase">
         {project.audience}
       </p>
       <h3 className="mt-2 font-display text-2xl font-semibold text-ink">
@@ -78,7 +78,7 @@ function ProjectItem({ project }: { project: Project }) {
           </li>
         ))}
       </ul>
-      <div className="mt-8 flex flex-wrap gap-2 sm:gap-3 max-sm:[&>*]:px-3.5">
+      <div className="mt-8 flex flex-wrap gap-2 max-sm:*:px-3.5 sm:gap-3">
         {project.links.map((link) => (
           <Button
             key={link.label}

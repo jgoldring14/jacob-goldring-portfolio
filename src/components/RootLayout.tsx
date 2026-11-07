@@ -57,8 +57,8 @@ function NavLink({
       className={clsx(
         'flex h-11 items-center rounded-full px-5 text-sm font-semibold transition duration-150',
         active
-          ? 'bg-ink/[0.06] text-ink'
-          : 'text-muted hover:bg-ink/[0.04] hover:text-ink',
+          ? 'bg-ink/6 text-ink'
+          : 'text-muted hover:bg-ink/4 hover:text-ink',
       )}
     >
       {children}
@@ -85,12 +85,12 @@ function Header() {
   }, [expanded])
 
   return (
-    <header className="sticky top-0 z-40 pt-3 before:pointer-events-none before:absolute before:inset-x-0 before:top-0 before:-z-10 before:h-12 before:bg-gradient-to-b before:from-surface before:to-surface/0 sm:pt-4 sm:before:h-14">
+    <header className="sticky top-0 z-40 pt-3 before:pointer-events-none before:absolute before:inset-x-0 before:top-0 before:-z-10 before:h-12 before:bg-linear-to-b before:from-surface before:to-surface/0 sm:pt-4 sm:before:h-14">
       <Container>
-        <div className="frost glass flex items-center justify-between gap-2 rounded-full py-2 pl-6 pr-2 [--glass-alpha:0.7] dark:[--glass-alpha:0.55] dark:[--glass:14_17_24]">
+        <div className="frost glass flex items-center justify-between gap-2 rounded-full py-2 pr-2 pl-6 [--glass-alpha:0.7] dark:[--glass-alpha:0.55] dark:[--glass:14_17_24]">
           <Link
             href="/"
-            className="whitespace-nowrap font-display text-lg font-semibold tracking-tight text-ink sm:text-xl"
+            className="font-display text-lg font-semibold tracking-tight whitespace-nowrap text-ink sm:text-xl"
           >
             Jacob Goldring
           </Link>
@@ -107,7 +107,7 @@ function Header() {
             <Button
               href="/contact"
               variant="secondary"
-              className="hidden md:inline-flex"
+              className="max-md:hidden"
             >
               Contact
             </Button>
@@ -141,7 +141,7 @@ function Header() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -8 }}
               transition={{ duration: 0.18 }}
-              className="frost glass absolute inset-x-6 top-full mt-3 rounded-[1.75rem] p-4 [--glass-alpha:0.85] dark:[--glass:14_17_24] dark:[--glass-alpha:0.7] md:hidden"
+              className="frost glass absolute inset-x-6 top-full mt-3 rounded-[1.75rem] p-4 [--glass-alpha:0.85] md:hidden dark:[--glass-alpha:0.7] dark:[--glass:14_17_24]"
             >
               <nav aria-label="Main" className="flex flex-col gap-2">
                 {[...navigation, { title: 'Contact', href: '/contact' }].map(

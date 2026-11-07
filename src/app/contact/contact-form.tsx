@@ -99,7 +99,7 @@ export function ContactForm() {
 
   if (sendState === 'sent') {
     return (
-      <FadeIn className="glass rounded-[2rem] p-8 sm:p-10">
+      <FadeIn className="glass rounded-4xl p-8 sm:p-10">
         <h2
           className="font-display text-2xl font-semibold text-ink"
           role="status"
@@ -117,7 +117,7 @@ export function ContactForm() {
   const isChecked = checkedTheme !== null && checkedTheme === theme
 
   return (
-    <FadeIn className="glass rounded-[2rem] p-8 sm:p-10">
+    <FadeIn className="glass rounded-4xl p-8 sm:p-10">
       <form onSubmit={handleSubmit}>
         <h2 className="font-display text-xl font-semibold text-ink">
           Send a message
@@ -208,10 +208,10 @@ export function ContactForm() {
 }
 
 const fieldClassName =
-  'peer well block w-full rounded-2xl border-line px-6 pb-4 pt-12 text-base/6 text-ink transition focus:border-primary-text focus:bg-transparent focus:outline-none focus:ring-4 focus:ring-primary/15'
+  'peer well block w-full rounded-2xl border-line px-6 pb-4 pt-12 text-base/6 text-ink transition focus:border-primary-text focus:bg-transparent focus:outline-hidden focus:ring-4 focus:ring-primary/15'
 
 const labelClassName =
-  'pointer-events-none absolute left-6 origin-left text-base/6 text-muted transition-all duration-200 peer-focus:scale-75 peer-focus:font-semibold peer-focus:text-ink peer-[:not(:placeholder-shown)]:scale-75 peer-[:not(:placeholder-shown)]:font-semibold peer-[:not(:placeholder-shown)]:text-ink'
+  'pointer-events-none absolute left-6 origin-left text-base/6 text-muted transition-all duration-200 peer-focus:scale-75 peer-focus:font-semibold peer-focus:text-ink peer-not-placeholder-shown:scale-75 peer-not-placeholder-shown:font-semibold peer-not-placeholder-shown:text-ink'
 
 function TextArea({
   label,
@@ -231,7 +231,7 @@ function TextArea({
       />
       <label
         htmlFor={id}
-        className={`${labelClassName} top-3 peer-focus:-translate-y-1 peer-[:not(:placeholder-shown)]:-translate-y-1`}
+        className={`${labelClassName} top-3 peer-not-placeholder-shown:-translate-y-1 peer-focus:-translate-y-1`}
       >
         {label}
       </label>
@@ -257,7 +257,7 @@ function TextInput({
       />
       <label
         htmlFor={id}
-        className={`${labelClassName} top-1/2 -mt-3 peer-focus:-translate-y-4 peer-[:not(:placeholder-shown)]:-translate-y-4`}
+        className={`${labelClassName} top-1/2 -mt-3 peer-not-placeholder-shown:-translate-y-4 peer-focus:-translate-y-4`}
       >
         {label}
       </label>

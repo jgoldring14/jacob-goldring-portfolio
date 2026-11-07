@@ -25,7 +25,7 @@ function OtherWorkSection() {
       />
       <Container className="mt-12">
         <FadeIn>
-          <article className="glass glow grid items-center gap-8 rounded-[2rem] p-6 sm:grid-cols-[14rem_1fr] sm:p-8 lg:gap-12">
+          <article className="glass glow grid items-center gap-8 rounded-4xl p-6 sm:grid-cols-[14rem_1fr] sm:p-8 lg:gap-12">
             <div className="well rounded-[1.75rem] p-3">
               <Image
                 src={imageLawsOfUxCover}
@@ -35,7 +35,7 @@ function OtherWorkSection() {
               />
             </div>
             <div className="max-w-2xl">
-              <p className="font-display text-xs font-semibold uppercase tracking-[0.14em] text-accent">
+              <p className="font-display text-xs font-semibold tracking-[0.14em] text-accent uppercase">
                 Claude skill
               </p>
               <h3 className="mt-3 font-display text-3xl font-semibold text-ink">
