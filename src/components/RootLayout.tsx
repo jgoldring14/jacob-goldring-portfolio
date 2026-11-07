@@ -9,7 +9,7 @@ import {
   motion,
   MotionConfig,
   useReducedMotion,
-} from 'framer-motion'
+} from 'motion/react'
 
 import { Button } from '@/components/Button'
 import { Container } from '@/components/Container'

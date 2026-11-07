@@ -2,7 +2,7 @@
 
 import { useRef } from 'react'
 import clsx from 'clsx'
-import { motion, useReducedMotion, useScroll } from 'framer-motion'
+import { motion, useReducedMotion, useScroll } from 'motion/react'
 
 import { FadeIn, FadeInStagger } from '@/components/FadeIn'
 
