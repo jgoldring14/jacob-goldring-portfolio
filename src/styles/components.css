@@ -1,7 +1,5 @@
 @tailwind components;
 
-@import './typography.css';
-
 @layer components {
   /*
    * Soft brand-colored light down the whole page, so every section sits on a little

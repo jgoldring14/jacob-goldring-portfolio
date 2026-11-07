@@ -31,7 +31,6 @@ export default {
       '5xl': ['2.5rem', { lineHeight: '3rem', letterSpacing: '-0.025em' }],
       '6xl': ['3rem', { lineHeight: '3.25rem', letterSpacing: '-0.03em' }],
       '7xl': ['4rem', { lineHeight: '4.25rem', letterSpacing: '-0.035em' }],
-      '8xl': ['5rem', { lineHeight: '5.25rem', letterSpacing: '-0.04em' }],
     },
     extend: {
       colors: {
@@ -45,9 +44,6 @@ export default {
           text: 'rgb(var(--primary-text) / <alpha-value>)',
         },
         accent: 'rgb(var(--accent) / <alpha-value>)',
-      },
-      borderRadius: {
-        '4xl': '2.5rem',
       },
       fontFamily: {
         sans: systemSans,
