@@ -2,6 +2,7 @@ import { type Metadata } from 'next'
 import Image from 'next/image'
 
 import { Button } from '@/components/Button'
+import { ChipList } from '@/components/ChipList'
 import { Container } from '@/components/Container'
 import { FadeIn } from '@/components/FadeIn'
 import { List, ListItem } from '@/components/List'
@@ -122,7 +123,7 @@ function Aside() {
         {facts.map((fact) => (
           <div
             key={fact.value}
-            className="glass flex items-center gap-5 rounded-[1.75rem] p-4"
+            className="glass glow flex items-center gap-5 rounded-[1.75rem] p-4"
           >
             <dt className="order-last text-sm text-muted">{fact.label}</dt>
             <dd className="well flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl font-display text-2xl font-semibold text-primary-text">
@@ -192,17 +193,11 @@ export default function LawsOfUx() {
                 details live in 19 reference files that only load when a review
                 needs them.
               </p>
-              <ul
-                role="list"
+              <ChipList
+                items={laws}
                 aria-label="The ten laws"
-                className="flex flex-wrap gap-2 pt-2"
-              >
-                {laws.map((law) => (
-                  <li key={law} className="chip">
-                    {law}
-                  </li>
-                ))}
-              </ul>
+                className="gap-2 pt-2"
+              />
             </Section>
 
             <Section title="How it works">

@@ -204,9 +204,28 @@
   }
 
   /*
-   * Hero entrance. Words rise and sharpen one after another (--i is the word's beat),
-   * other blocks follow after --d. Transform, opacity and filter only, so it stays smooth.
+   * Entrances that play on load in pure CSS, so they show on first paint without
+   * waiting for JavaScript. Headline words drift up and come into focus one after
+   * another (--i is the word's beat). Other blocks follow after --d. The easing is
+   * gentle on purpose so nothing looks like it drops in. Transform, opacity and
+   * filter only, so it stays smooth.
    */
+  @keyframes word-rise {
+    from {
+      opacity: 0;
+      transform: translateY(0.25em);
+      filter: blur(16px);
+    }
+    50% {
+      opacity: 1;
+    }
+    to {
+      opacity: 1;
+      transform: none;
+      filter: blur(0);
+    }
+  }
+
   @keyframes rise {
     from {
       opacity: 0;
@@ -233,50 +252,36 @@
     }
   }
 
+  /* The header settles down from just above the top edge once per page load. */
+  @keyframes drop-in {
+    from {
+      opacity: 0;
+      transform: translateY(-1rem);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
   .word-rise {
     display: inline-block;
-    animation: rise 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
-    animation-delay: calc(var(--i, 0) * 90ms);
+    animation: word-rise 1.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+    animation-delay: calc(var(--i, 0) * 180ms);
   }
 
   .rise {
-    animation: rise 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+    animation: rise 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
     animation-delay: var(--d, 0ms);
   }
 
   .rise-scale {
-    animation: rise-scale 1s cubic-bezier(0.22, 1, 0.36, 1) both;
+    animation: rise-scale 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
     animation-delay: var(--d, 0ms);
   }
 
-  /* A live dot that pings three times on load, then rests. */
-  .now-dot {
-    position: relative;
-    width: 0.5rem;
-    height: 0.5rem;
-    flex: none;
-    border-radius: 9999px;
-    background: rgb(var(--live));
-  }
-
-  .now-dot::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    background: rgb(var(--live));
-    animation: ping 1.4s cubic-bezier(0, 0, 0.2, 1) 1s 3 both;
-  }
-
-  @keyframes ping {
-    from {
-      transform: scale(1);
-      opacity: 0.7;
-    }
-    to {
-      transform: scale(3);
-      opacity: 0;
-    }
+  .drop-in {
+    animation: drop-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
   }
 
   /*
@@ -321,7 +326,7 @@
     .word-rise,
     .rise,
     .rise-scale,
-    .now-dot::after {
+    .drop-in {
       animation: none;
     }
   }

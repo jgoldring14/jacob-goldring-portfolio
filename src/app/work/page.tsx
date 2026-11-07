@@ -12,7 +12,7 @@ import imageLawsOfUxCover from '../../../public/images/laws-of-ux-cover.png'
 export const metadata: Metadata = {
   title: 'Work',
   description:
-    'Vamo, Vamo Host and the Vamo website. Two apps and a website for local markets, built by Jacob Goldring and his business partner.',
+    'Vamo, Vamo Host and the Vamo website make up one ecosystem for local markets. Built by Jacob Goldring and his business partner.',
   alternates: { canonical: '/work' },
 }
 
@@ -64,11 +64,11 @@ export default function Work() {
       <PageIntro eyebrow="Work" title="What I build">
         <div className="space-y-6">
           <p>
-            Most of my day job is private, but this is the stuff I can actually
-            show you. Vamo is a startup I co-founded with my friend and business
-            partner. We built two apps and a website for local markets.
-            It&apos;s just the two of us, so we both do a little of everything
-            it takes to run a company.
+            Vamo is a startup I co-founded with my friend and business partner.
+            We built it as one connected ecosystem. Whatever device you&apos;re
+            on and wherever you are, Vamo is right there with you. It&apos;s
+            just the two of us, so we both do a little of everything it takes to
+            run a company.
           </p>
           <p>
             Vamo operates in Southern California and we&apos;re growing. One day

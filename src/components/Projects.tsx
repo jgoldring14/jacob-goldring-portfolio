@@ -1,4 +1,5 @@
 import { Button } from '@/components/Button'
+import { ChipList } from '@/components/ChipList'
 
 type ProjectLink = { label: string; href: string }
 
@@ -67,17 +68,11 @@ function ProjectItem({ project }: { project: Project }) {
       <p className="mt-4 flex-auto text-base text-muted">
         {project.description}
       </p>
-      <ul
-        role="list"
+      <ChipList
+        items={project.tech.split(', ')}
         aria-label="Built with"
-        className="mt-6 flex flex-wrap gap-2"
-      >
-        {project.tech.split(', ').map((item) => (
-          <li key={item} className="chip">
-            {item}
-          </li>
-        ))}
-      </ul>
+        className="mt-6 gap-2"
+      />
       <div className="mt-8 flex flex-wrap gap-2 max-sm:*:px-3.5 sm:gap-3">
         {project.links.map((link) => (
           <Button

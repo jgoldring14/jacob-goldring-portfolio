@@ -3,7 +3,9 @@ import { type Metadata } from 'next'
 import Image from 'next/image'
 
 import { AppIconFlip } from '@/components/AppIconFlip'
+import { ChipList } from '@/components/ChipList'
 import { Container } from '@/components/Container'
+import { CountUp } from '@/components/CountUp'
 import { FadeIn, FadeInStagger } from '@/components/FadeIn'
 import { HowItsBuilt } from '@/components/HowItsBuilt'
 import { List, ListItem } from '@/components/List'
@@ -14,8 +16,8 @@ import { Tilt } from '@/components/Tilt'
 import imageJacobIllustrated from '../../public/images/jacob-illustrated.webp'
 import imageLaptopDesk from '../../public/images/laptop-desk.jpg'
 
-const stats = [
-  { value: '~200', label: 'vendors on Vamo' },
+const stats: Array<{ value: string; label: string; countTo?: number }> = [
+  { value: '~200', label: 'vendors on Vamo', countTo: 200 },
   { value: '2', label: 'apps live on iOS and Android' },
   { value: '2024', label: 'first app live in production' },
 ]
@@ -73,8 +75,6 @@ function Portrait() {
   )
 }
 
-const nowBuilding = 'Square catalog sync for Vamo'
-
 /**
  * Plays once on load and is pure CSS, so the hero shows on first paint without waiting
  * for JavaScript. Each word of the first line rises in on its own beat, then the
@@ -109,7 +109,7 @@ function Hero() {
           </h1>
           <p
             className="rise mt-8 max-w-2xl text-xl text-muted"
-            style={{ '--d': '520ms' }}
+            style={{ '--d': '900ms' }}
           >
             I build apps people use every day, from the database all the way to
             the screen you tap. By day I work on a banking app that credit
@@ -117,18 +117,11 @@ function Hero() {
             startup I <span className="whitespace-nowrap">co-founded</span> for
             local markets.
           </p>
-          <div className="rise" style={{ '--d': '620ms' }}>
+          <div className="rise" style={{ '--d': '1050ms' }}>
             <ProfileActions className="mt-10" />
-            <p className="glass mt-8 inline-flex items-center gap-3 rounded-full py-2 pr-4 pl-3 text-sm text-muted">
-              <span className="now-dot" aria-hidden="true" />
-              <span>
-                <span className="font-semibold text-ink">Now building</span>{' '}
-                {nowBuilding}
-              </span>
-            </p>
           </div>
         </div>
-        <div className="rise-scale hidden lg:block" style={{ '--d': '200ms' }}>
+        <div className="rise-scale hidden lg:block" style={{ '--d': '300ms' }}>
           <Portrait />
         </div>
       </div>
@@ -160,13 +153,7 @@ function MahaloSection() {
           <h3 className="font-display text-xs font-semibold tracking-[0.14em] text-muted uppercase">
             What I work on
           </h3>
-          <ul role="list" className="mt-5 flex flex-wrap gap-3">
-            {mahaloWork.map((item) => (
-              <li key={item} className="chip chip-lg">
-                {item}
-              </li>
-            ))}
-          </ul>
+          <ChipList items={mahaloWork} large className="mt-5 gap-3" />
         </div>
       </FadeIn>
     </Container>
@@ -187,9 +174,9 @@ function VamoSection() {
             </span>
           </h2>
           <p className="mt-6 text-xl text-muted">
-            Vamo started as a street food discovery app. Now it&apos;s two apps
-            and a website for local markets. Shoppers find what&apos;s on and
-            vendors book their spots. Hosts run the whole market from their
+            Vamo started as a street food discovery app. Now it&apos;s one
+            connected ecosystem for local markets. Shoppers find what&apos;s on
+            and vendors book their spots. Hosts run the whole market from their
             phone. It&apos;s just my business partner and me, so we both do a
             lot of everything.
           </p>
@@ -203,7 +190,11 @@ function VamoSection() {
                   {stat.label}
                 </dt>
                 <dd className="min-w-16 font-display text-2xl font-semibold tracking-tight text-primary-text sm:min-w-0 sm:text-3xl sm:tracking-[-0.015em]">
-                  {stat.value}
+                  {stat.countTo ? (
+                    <CountUp value={stat.countTo} prefix="~" />
+                  ) : (
+                    stat.value
+                  )}
                 </dd>
               </div>
             ))}
@@ -265,13 +256,11 @@ function StackSection() {
                 <h3 className="font-display text-2xl font-semibold text-ink">
                   {group.title}
                 </h3>
-                <ul role="list" className="mt-6 flex flex-wrap gap-3">
-                  {group.items.split(', ').map((item) => (
-                    <li key={item} className="chip chip-lg">
-                      {item}
-                    </li>
-                  ))}
-                </ul>
+                <ChipList
+                  items={group.items.split(', ')}
+                  large
+                  className="mt-6 gap-3"
+                />
               </article>
             </FadeIn>
           ))}
@@ -322,7 +311,7 @@ function Timeline() {
             <ListItem title="Flatiron School, 2021">
               A full-time coding bootcamp. I put in about 16 hours a day for
               five or six days a week. That&apos;s where I learned JavaScript
-              and React plus Ruby on Rails.
+              and React along with Ruby and Ruby on Rails.
             </ListItem>
             <ListItem title="Started coding, 2020">
               I took a JavaScript course after work every day and got hooked.

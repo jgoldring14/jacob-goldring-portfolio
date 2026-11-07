@@ -15,8 +15,9 @@ up its mobile DevOps.
 
 ## Vamo (2024 to now)
 
-Vamo started as a street food discovery app and grew into two apps and a
-website for local markets. All three run on one Supabase backend.
+Vamo started as a street food discovery app and grew into one connected
+ecosystem for local markets. Its two apps and website run on one Supabase
+backend.
 
 - Vamo: for shoppers and vendors. Live on the App Store and Google Play.
 - Vamo Host: for the hosts who run markets. Live on the App Store and Google

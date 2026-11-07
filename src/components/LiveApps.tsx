@@ -1,6 +1,7 @@
 import Image, { type StaticImageData } from 'next/image'
 
 import { Button } from '@/components/Button'
+import { ChipList } from '@/components/ChipList'
 import { FadeIn, FadeInStagger } from '@/components/FadeIn'
 import imageVamoHostIcon from '../../public/images/vamo-host-icon.png'
 import imageVamoIcon from '../../public/images/vamo-icon.png'
@@ -105,17 +106,11 @@ function AppCard({ app }: { app: LiveApp }) {
         </p>
         <p className="mt-1 text-base font-medium text-ink">{app.myPart}</p>
       </div>
-      <ul
-        role="list"
+      <ChipList
+        items={app.tech}
         aria-label="Built with"
-        className="mt-6 flex flex-auto flex-wrap content-start gap-2"
-      >
-        {app.tech.map((item) => (
-          <li key={item} className="chip">
-            {item}
-          </li>
-        ))}
-      </ul>
+        className="mt-6 flex-auto content-start gap-2"
+      />
       {app.links.length > 0 && (
         <div className="mt-8 flex flex-wrap gap-2 max-sm:*:px-3.5 sm:gap-3">
           {app.links.map((link) => (

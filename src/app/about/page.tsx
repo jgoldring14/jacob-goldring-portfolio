@@ -50,13 +50,16 @@ export default function About() {
             I started coding in 2020 with a course I took after work. I was
             hooked, so in 2021 I went all in on Flatiron School&apos;s full-time
             bootcamp. That meant about 16 hours a day for five or six days a
-            week. I learned JavaScript and React plus Ruby on Rails.
+            week. I learned JavaScript and React along with Ruby and Ruby on
+            Rails.
           </p>
           <p>
-            Since 2022 I&apos;ve built software that credit union members use to
-            move their money. In 2024 I co-founded Vamo. Both jobs come down to
-            the same thing for me. I take something complicated and make it feel
-            simple for the person holding the phone.
+            Since 2022 I&apos;ve built the software, tools and integrations that
+            let credit unions give their members modern online and mobile
+            banking. A lot of my work makes banking easier for neurodivergent
+            members. In 2024 I co-founded Vamo. Both jobs come down to the same
+            thing for me. I take something complicated and make it feel simple
+            for the person holding the phone.
           </p>
           <p>
             I work remote from Breckenridge, Colorado. A lot of what I build is
