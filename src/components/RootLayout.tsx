@@ -214,7 +214,7 @@ export function RootLayout({ children }: { children: React.ReactNode }) {
       transition={shouldReduceMotion ? { duration: 0 } : undefined}
     >
       <Header />
-      <main className="w-full flex-auto">{children}</main>
+      <main className="w-full flex-auto overflow-x-clip">{children}</main>
       <Footer />
     </MotionConfig>
   )
