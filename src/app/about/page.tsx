@@ -11,8 +11,8 @@ function Portrait() {
   return (
     <Container className="mt-24 sm:mt-32 lg:mt-40">
       <FadeIn>
-        <figure className="max-w-md rounded-[2.5rem] bg-surface p-4 shadow-neu">
-          <div className="overflow-hidden rounded-[2rem] shadow-neu-inset">
+        <figure className="glass max-w-md rounded-[2rem] p-4">
+          <div className="well overflow-hidden rounded-[1.75rem]">
             <Image
               alt="Jacob Goldring"
               src={imageJacobGoldring}

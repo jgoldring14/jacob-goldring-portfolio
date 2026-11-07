@@ -1,19 +1,10 @@
 @tailwind base;
 
-@font-face {
-  font-family: 'Mona Sans';
-  font-weight: 200 900;
-  font-display: block;
-  font-style: normal;
-  font-stretch: 75% 125%;
-  src: url('../fonts/Mona-Sans.var.woff2') format('woff2');
-}
-
 /*
  * Theme tokens, as space-separated RGB channels so Tailwind opacity modifiers work.
- * Neumorphism needs the element and the page to share one surface color, lit from
- * the top left: shade-light is the highlight and shade-dark the cast shadow.
- * Text, primary and line colors are picked for WCAG AA against the surface.
+ * The page is a soft tinted canvas with a fixed aurora behind it. Cards are glass:
+ * translucent white with a light edge, so the aurora tints them as you scroll.
+ * Text, primary and accent colors are picked for WCAG AA against the canvas.
  */
 @layer base {
   /* Avoids a lone word on the last line of a paragraph. */
@@ -22,35 +13,70 @@
   }
 
   :root {
-    --surface: 228 233 240;
-    --shade-light: 255 255 255;
-    --shade-dark: 190 199 213;
-    --ink: 14 26 46;
+    --surface: 245 247 251;
+    --ink: 11 18 32;
     --muted: 71 84 104;
     --line: 118 129 143;
     --primary: 0 90 156;
     --primary-ink: 255 255 255;
     --primary-text: 0 90 156;
     --accent: 133 96 0;
+    --teal-text: 13 116 108;
+    --live: 22 163 74;
+
+    --glass: 255 255 255;
+    --glass-alpha: 0.62;
+    --glass-edge: 255 255 255;
+    --glass-edge-alpha: 0.85;
+    --glass-shine: 0.9;
+    --shadow: 30 41 59;
+    --shadow-alpha: 0.16;
+
+    --glow-1: 120 178 255;
+    --glow-2: 94 234 212;
+    --glow-3: 253 214 120;
+    --glow-alpha: 0.5;
     color-scheme: light;
   }
 
   .dark {
-    --surface: 24 26 31;
-    --shade-light: 34 37 44;
-    --shade-dark: 12 13 16;
-    --ink: 236 238 243;
-    --muted: 163 169 181;
+    --surface: 9 11 16;
+    --ink: 236 239 245;
+    --muted: 160 168 184;
     --line: 100 106 120;
     --primary: 78 163 239;
-    --primary-ink: 10 20 48;
-    --primary-text: 108 180 245;
+    --primary-ink: 6 16 36;
+    --primary-text: 120 186 248;
     --accent: 245 197 66;
+    --teal-text: 94 234 212;
+    --live: 74 222 128;
+
+    --glass: 255 255 255;
+    --glass-alpha: 0.045;
+    --glass-edge: 255 255 255;
+    --glass-edge-alpha: 0.09;
+    --glass-shine: 0.06;
+    --shadow: 0 0 0;
+    --shadow-alpha: 0.5;
+
+    --glow-1: 37 99 235;
+    --glow-2: 13 148 136;
+    --glow-3: 180 120 20;
+    --glow-alpha: 0.26;
     color-scheme: dark;
+  }
+
+  /* Keeps focused or scrolled-to content clear of the sticky header. */
+  html {
+    scroll-padding-top: 6rem;
   }
 
   :focus-visible {
     outline: 2px solid rgb(var(--primary-text));
     outline-offset: 3px;
+  }
+
+  ::selection {
+    background: rgb(var(--primary) / 0.2);
   }
 }

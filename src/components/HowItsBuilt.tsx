@@ -46,8 +46,8 @@ export function HowItsBuilt() {
       <FadeInStagger className="grid grid-cols-1 gap-4 sm:grid-cols-3 sm:gap-8">
         {clients.map((client) => (
           <FadeIn key={client.name} blur className="flex">
-            <article className="w-full rounded-[2rem] bg-surface p-6 text-center shadow-neu">
-              <p className="font-display text-xs font-semibold uppercase tracking-[0.2em] text-accent">
+            <article className="glass glow w-full rounded-[1.75rem] p-6 text-center">
+              <p className="font-display text-xs font-semibold uppercase tracking-[0.14em] text-accent">
                 {client.platform}
               </p>
               <h3 className="mt-2 font-display text-xl font-semibold text-ink">
@@ -62,8 +62,8 @@ export function HowItsBuilt() {
       <Connector />
 
       <FadeIn blur>
-        <article className="rounded-[2rem] p-6 text-center shadow-neu-inset sm:p-8">
-          <p className="font-display text-xs font-semibold uppercase tracking-[0.2em] text-accent">
+        <article className="well rounded-[1.75rem] p-6 text-center sm:p-8">
+          <p className="font-display text-xs font-semibold uppercase tracking-[0.14em] text-accent">
             Supabase
           </p>
           <h3 className="mt-2 font-display text-2xl font-semibold text-ink">
@@ -74,10 +74,7 @@ export function HowItsBuilt() {
             className="mt-5 flex flex-wrap justify-center gap-2 sm:gap-3"
           >
             {backend.map((item) => (
-              <li
-                key={item}
-                className="rounded-full bg-surface bg-convex px-4 py-2 text-sm font-medium text-ink shadow-neu-sm"
-              >
+              <li key={item} className="chip chip-lg">
                 {item}
               </li>
             ))}
@@ -88,13 +85,13 @@ export function HowItsBuilt() {
       <FadeInStagger className="mt-8 grid grid-cols-1 gap-8 md:grid-cols-2">
         {mine.map((item) => (
           <FadeIn key={item.title} blur className="flex">
-            <article className="flex w-full flex-col rounded-[2rem] bg-surface p-6 shadow-neu sm:p-8">
+            <article className="glass glow flex w-full flex-col rounded-[1.75rem] p-6 sm:p-8">
               <div className="flex flex-wrap items-center gap-2">
-                <span className="rounded-full bg-surface bg-convex px-3 py-1 text-xs font-semibold text-accent shadow-neu-sm">
+                <span className="glass rounded-full px-3 py-1 text-xs font-semibold text-accent">
                   Mine
                 </span>
                 {item.status && (
-                  <span className="rounded-full px-3 py-1 text-xs font-semibold text-muted shadow-neu-inset-sm">
+                  <span className="well rounded-full px-3 py-1 text-xs font-semibold text-muted">
                     {item.status}
                   </span>
                 )}

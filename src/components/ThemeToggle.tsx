@@ -5,6 +5,19 @@ import clsx from 'clsx'
 
 const storageKey = 'theme'
 
+type ViewTransition = { ready: Promise<void> }
+
+type DocumentWithViewTransitions = Document & {
+  startViewTransition: (update: () => void) => ViewTransition
+}
+
+/** TypeScript 5.3's DOM types don't include the View Transitions API yet. */
+function supportsViewTransitions(
+  doc: Document,
+): doc is DocumentWithViewTransitions {
+  return 'startViewTransition' in doc
+}
+
 function SunIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
   return (
     <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" {...props}>
@@ -47,13 +60,55 @@ export function ThemeToggle({ className }: { className?: string }) {
     return () => media.removeEventListener('change', onSystemChange)
   }, [])
 
-  function toggle() {
-    let next = !document.documentElement.classList.contains('dark')
+  function applyTheme(next: boolean) {
     document.documentElement.classList.toggle('dark', next)
     try {
       localStorage.setItem(storageKey, next ? 'dark' : 'light')
     } catch {}
     setIsDark(next)
+  }
+
+  /**
+   * Where the browser supports view transitions, the new theme grows out of the toggle
+   * as a circle. Otherwise, or with reduced motion, it just switches.
+   */
+  function toggle(event: React.MouseEvent<HTMLButtonElement>) {
+    let next = !document.documentElement.classList.contains('dark')
+    let reduceMotion = window.matchMedia(
+      '(prefers-reduced-motion: reduce)',
+    ).matches
+
+    if (!supportsViewTransitions(document) || reduceMotion) {
+      applyTheme(next)
+      return
+    }
+
+    let rect = event.currentTarget.getBoundingClientRect()
+    let x = rect.left + rect.width / 2
+    let y = rect.top + rect.height / 2
+    let radius = Math.hypot(
+      Math.max(x, window.innerWidth - x),
+      Math.max(y, window.innerHeight - y),
+    )
+
+    document
+      .startViewTransition(() => applyTheme(next))
+      .ready.then(() => {
+        document.documentElement.animate(
+          {
+            clipPath: [
+              `circle(0px at ${x}px ${y}px)`,
+              `circle(${radius}px at ${x}px ${y}px)`,
+            ],
+          },
+          {
+            duration: 550,
+            easing: 'cubic-bezier(0.22, 1, 0.36, 1)',
+            pseudoElement: '::view-transition-new(root)',
+          },
+        )
+      })
+      .catch(() => {})
   }
 
   return (
@@ -64,11 +119,11 @@ export function ThemeToggle({ className }: { className?: string }) {
       aria-label="Dark mode"
       onClick={toggle}
       className={clsx(
-        'relative inline-flex h-10 w-[4.5rem] shrink-0 items-center rounded-full border border-line/60 bg-surface p-1 shadow-neu-inset-sm transition-colors',
+        'well relative inline-flex h-11 w-[4.75rem] shrink-0 items-center rounded-full p-1 transition-colors',
         className,
       )}
     >
-      <span className="flex h-8 w-8 items-center justify-center rounded-full bg-surface bg-convex text-accent shadow-neu-sm transition-transform duration-200 ease-apple-out dark:translate-x-8 dark:text-primary-text">
+      <span className="flex h-9 w-9 items-center justify-center rounded-full bg-white text-accent shadow-[0_2px_8px_rgb(var(--shadow)/0.22)] transition-transform duration-200 ease-apple-out dark:translate-x-8 dark:bg-white/[0.12] dark:text-primary-text">
         <SunIcon className="h-5 w-5 dark:hidden" />
         <MoonIcon className="hidden h-5 w-5 dark:block" />
       </span>

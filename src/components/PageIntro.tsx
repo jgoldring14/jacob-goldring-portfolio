@@ -20,13 +20,11 @@ export function PageIntro({
     >
       <FadeIn blur>
         <h1>
-          <span className="inline-flex rounded-full px-4 py-1.5 font-display text-xs font-semibold uppercase tracking-[0.2em] text-accent shadow-neu-inset-sm">
-            {eyebrow}
-          </span>
+          <span className="eyebrow">{eyebrow}</span>
           <span className="sr-only"> - </span>
           <span
             className={clsx(
-              'mt-6 block max-w-5xl font-display text-5xl font-medium tracking-tight text-ink [text-wrap:balance] sm:text-6xl',
+              'mt-6 block max-w-5xl font-display text-5xl font-semibold tracking-tight text-ink [text-wrap:balance] sm:text-6xl',
               centered && 'mx-auto',
             )}
           >

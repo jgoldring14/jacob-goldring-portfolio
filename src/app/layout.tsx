@@ -1,9 +1,17 @@
 import { type Metadata } from 'next'
+import { Inter } from 'next/font/google'
 
 import { RootLayout } from '@/components/RootLayout'
 import { SITE_NAME, SITE_URL } from '@/lib/site'
 
 import '@/styles/tailwind.css'
+
+const inter = Inter({
+  subsets: ['latin'],
+  display: 'swap',
+  preload: false,
+  variable: '--font-inter',
+})
 
 const description =
   'Jacob Goldring is a full stack engineer who builds digital banking for credit unions. He is also co-founder and CTO of Vamo, two apps and a website for local markets.'
@@ -93,13 +101,14 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <html
       lang="en"
-      className="h-full bg-surface text-base text-ink antialiased"
+      className={`${inter.variable} h-full bg-surface text-base text-ink antialiased`}
       suppressHydrationWarning
     >
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
-      <body className="flex min-h-full flex-col">
+      <body className="relative flex min-h-full flex-col">
+        <div aria-hidden="true" className="aurora" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: serializeJsonLd(personSchema) }}

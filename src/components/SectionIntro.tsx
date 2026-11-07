@@ -24,9 +24,7 @@ export function SectionIntro({
         <h2>
           {eyebrow && (
             <>
-              <span className="mb-6 inline-flex rounded-full px-4 py-1.5 font-display text-xs font-semibold uppercase tracking-[0.2em] text-accent shadow-neu-inset-sm">
-                {eyebrow}
-              </span>
+              <span className="eyebrow mb-6">{eyebrow}</span>
               <span className="sr-only"> - </span>
             </>
           )}
@@ -35,7 +33,7 @@ export function SectionIntro({
               'block font-display tracking-tight [text-wrap:balance]',
               smaller
                 ? 'text-2xl font-semibold'
-                : 'text-4xl font-medium sm:text-5xl',
+                : 'text-4xl font-semibold sm:text-5xl',
               'text-ink',
             )}
           >

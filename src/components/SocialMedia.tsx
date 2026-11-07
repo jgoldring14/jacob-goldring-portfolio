@@ -86,7 +86,7 @@ export function SocialMedia({ className }: { className?: string }) {
             rel="noopener noreferrer"
             href={profile.href}
             aria-label={profile.title}
-            className="flex h-12 w-12 items-center justify-center rounded-full bg-surface bg-convex text-ink shadow-neu-sm transition duration-150 hover:text-primary-text active:bg-none active:shadow-neu-inset-sm"
+            className="glass flex h-12 w-12 items-center justify-center rounded-full text-ink transition duration-150 hover:text-primary-text"
           >
             <profile.icon className="h-5 w-5" />
           </Link>

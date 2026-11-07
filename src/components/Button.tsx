@@ -10,8 +10,9 @@ type ButtonProps = {
 )
 
 /**
- * Primary is solid Dodger blue so the main action never depends on a shadow to be seen.
- * Secondary is a raised neumorphic button that presses in when active.
+ * Primary is solid blue with a soft colored glow, so the main action is the one thing
+ * that stands out. Secondary is a glass pill. Both lift a pixel on hover and press
+ * down on click, so every tap gets instant feedback.
  */
 export function Button({
   variant = 'primary',
@@ -21,11 +22,11 @@ export function Button({
   ...props
 }: ButtonProps) {
   className = clsx(
-    'inline-flex items-center justify-center whitespace-nowrap rounded-full font-semibold transition duration-150 ease-apple-out',
+    'inline-flex items-center justify-center whitespace-nowrap rounded-full font-semibold transition duration-200 ease-apple-out hover:-translate-y-px active:translate-y-0 active:scale-[0.98] motion-reduce:transform-none',
     size === 'md' ? 'h-11 px-5 text-sm' : 'h-14 px-8 text-base',
     variant === 'primary'
-      ? 'bg-primary bg-primary-convex text-primary-ink shadow-neu-primary hover:brightness-110 active:shadow-neu-inset-sm active:brightness-95'
-      : 'bg-surface bg-convex text-ink shadow-neu-sm hover:text-primary-text active:bg-none active:shadow-neu-inset-sm',
+      ? 'bg-primary text-primary-ink shadow-[inset_0_1px_0_rgb(255_255_255/0.25),0_10px_24px_-10px_rgb(var(--primary)/0.75)] hover:brightness-110 hover:shadow-[inset_0_1px_0_rgb(255_255_255/0.25),0_14px_30px_-10px_rgb(var(--primary)/0.85)] active:brightness-95'
+      : 'glass text-ink hover:border-primary/30 hover:text-primary-text',
     className,
   )
 

@@ -57,8 +57,8 @@ const projects: Array<Project> = [
 
 function ProjectItem({ project }: { project: Project }) {
   return (
-    <article className="flex w-full flex-col rounded-[2rem] bg-surface p-6 shadow-neu transition duration-300 ease-apple-out hover:-translate-y-1 hover:shadow-neu-lg motion-reduce:hover:translate-y-0 sm:p-8">
-      <p className="font-display text-xs font-semibold uppercase tracking-[0.2em] text-accent">
+    <article className="glass glow flex w-full flex-col rounded-[1.75rem] p-6 sm:p-8">
+      <p className="font-display text-xs font-semibold uppercase tracking-[0.14em] text-accent">
         {project.audience}
       </p>
       <h3 className="mt-2 font-display text-2xl font-semibold text-ink">
@@ -73,10 +73,7 @@ function ProjectItem({ project }: { project: Project }) {
         className="mt-6 flex flex-wrap gap-2"
       >
         {project.tech.split(', ').map((item) => (
-          <li
-            key={item}
-            className="cursor-default rounded-full px-3 py-1 text-xs font-semibold text-muted shadow-neu-inset-sm transition duration-200 hover:bg-convex hover:text-primary-text hover:shadow-neu-sm"
-          >
+          <li key={item} className="chip">
             {item}
           </li>
         ))}

@@ -1,10 +1,19 @@
 import { type Config } from 'tailwindcss'
-import defaultTheme from 'tailwindcss/defaultTheme'
 
-/** A raised neumorphic shadow pair, lit from the top left. */
-function raised(x: number, y: number, blur: number) {
-  return `${x}px ${y}px ${blur}px rgb(var(--shade-dark)), ${-x}px ${-y}px ${blur}px rgb(var(--shade-light))`
-}
+/**
+ * SF on Apple devices, Inter (self-hosted by next/font) everywhere else. Inter is only
+ * downloaded when the system font isn't there.
+ */
+const systemSans = [
+  '-apple-system',
+  'BlinkMacSystemFont',
+  'var(--font-inter)',
+  'Segoe UI',
+  'Roboto',
+  'Helvetica Neue',
+  'Arial',
+  'sans-serif',
+]
 
 export default {
   content: ['./src/**/*.{js,jsx,mdx,ts,tsx}'],
@@ -17,12 +26,12 @@ export default {
       lg: ['1.125rem', { lineHeight: '1.75rem' }],
       xl: ['1.25rem', { lineHeight: '2rem' }],
       '2xl': ['1.5rem', { lineHeight: '2.25rem' }],
-      '3xl': ['1.75rem', { lineHeight: '2.25rem' }],
-      '4xl': ['2rem', { lineHeight: '2.5rem' }],
-      '5xl': ['2.5rem', { lineHeight: '3rem', letterSpacing: '-0.02em' }],
-      '6xl': ['3rem', { lineHeight: '3.25rem', letterSpacing: '-0.025em' }],
-      '7xl': ['4rem', { lineHeight: '4.25rem', letterSpacing: '-0.03em' }],
-      '8xl': ['5rem', { lineHeight: '5.25rem', letterSpacing: '-0.035em' }],
+      '3xl': ['1.75rem', { lineHeight: '2.25rem', letterSpacing: '-0.015em' }],
+      '4xl': ['2rem', { lineHeight: '2.5rem', letterSpacing: '-0.02em' }],
+      '5xl': ['2.5rem', { lineHeight: '3rem', letterSpacing: '-0.025em' }],
+      '6xl': ['3rem', { lineHeight: '3.25rem', letterSpacing: '-0.03em' }],
+      '7xl': ['4rem', { lineHeight: '4.25rem', letterSpacing: '-0.035em' }],
+      '8xl': ['5rem', { lineHeight: '5.25rem', letterSpacing: '-0.04em' }],
     },
     extend: {
       colors: {
@@ -37,38 +46,12 @@ export default {
         },
         accent: 'rgb(var(--accent) / <alpha-value>)',
       },
-      boxShadow: {
-        'neu-sm': raised(4, 4, 8),
-        neu: raised(9, 9, 18),
-        'neu-lg': raised(16, 16, 32),
-        'neu-inset':
-          'inset 5px 5px 10px rgb(var(--shade-dark)), inset -5px -5px 10px rgb(var(--shade-light))',
-        'neu-inset-sm':
-          'inset 3px 3px 6px rgb(var(--shade-dark)), inset -3px -3px 6px rgb(var(--shade-light))',
-        'neu-primary': `${raised(5, 5, 12)}, inset 1px 1px 1px rgb(255 255 255 / 0.25)`,
-        // For elements turned 45deg: an x-only offset lands on the screen diagonal,
-        // so the light still falls from the top left.
-        'neu-diamond': raised(22, 0, 32),
-        'neu-diamond-inset':
-          'inset 7px 0 10px rgb(var(--shade-dark)), inset -7px 0 10px rgb(var(--shade-light))',
-      },
       borderRadius: {
         '4xl': '2.5rem',
       },
-      backgroundImage: {
-        convex:
-          'linear-gradient(145deg, rgb(var(--shade-light) / 0.5), rgb(var(--shade-dark) / 0.25))',
-        'convex-diamond':
-          'linear-gradient(100deg, rgb(var(--shade-light) / 0.5), rgb(var(--shade-dark) / 0.25))',
-        'primary-convex':
-          'linear-gradient(145deg, rgb(255 255 255 / 0.14), rgb(0 0 0 / 0.12))',
-      },
       fontFamily: {
-        sans: ['Mona Sans', ...defaultTheme.fontFamily.sans],
-        display: [
-          ['Mona Sans', ...defaultTheme.fontFamily.sans],
-          { fontVariationSettings: '"wdth" 125' },
-        ],
+        sans: systemSans,
+        display: [systemSans, { fontVariationSettings: 'normal' }],
       },
       transitionTimingFunction: {
         'apple-out': 'cubic-bezier(0.22, 1, 0.36, 1)',

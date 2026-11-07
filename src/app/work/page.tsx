@@ -25,8 +25,8 @@ function OtherWorkSection() {
       />
       <Container className="mt-12">
         <FadeIn>
-          <article className="grid items-center gap-8 rounded-[2.5rem] bg-surface p-6 shadow-neu transition duration-300 ease-apple-out hover:-translate-y-1 hover:shadow-neu-lg motion-reduce:hover:translate-y-0 sm:grid-cols-[14rem_1fr] sm:p-8 lg:gap-12">
-            <div className="rounded-[1.75rem] p-3 shadow-neu-inset">
+          <article className="glass glow grid items-center gap-8 rounded-[2rem] p-6 sm:grid-cols-[14rem_1fr] sm:p-8 lg:gap-12">
+            <div className="well rounded-[1.75rem] p-3">
               <Image
                 src={imageLawsOfUxCover}
                 alt="Cover slide of the laws-of-ux carousel: Your users shouldn't need a manual."
@@ -35,7 +35,7 @@ function OtherWorkSection() {
               />
             </div>
             <div className="max-w-2xl">
-              <p className="font-display text-xs font-semibold uppercase tracking-[0.2em] text-accent">
+              <p className="font-display text-xs font-semibold uppercase tracking-[0.14em] text-accent">
                 Claude skill
               </p>
               <h3 className="mt-3 font-display text-3xl font-semibold text-ink">

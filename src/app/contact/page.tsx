@@ -26,7 +26,7 @@ const contactLinks = [
 function ContactDetails() {
   return (
     <FadeIn className="space-y-8">
-      <section className="rounded-[2.5rem] bg-surface p-8 shadow-neu sm:p-10">
+      <section className="glass rounded-[2rem] p-8 sm:p-10">
         <h2 className="font-display text-xl font-semibold text-ink">Resume</h2>
         <p className="mt-4 text-base text-muted">
           Want the quick version? Here&apos;s everything on one page.
@@ -42,23 +42,20 @@ function ContactDetails() {
         </Button>
       </section>
 
-      <section className="rounded-[2.5rem] bg-surface p-8 shadow-neu sm:p-10">
+      <section className="glass rounded-[2rem] p-8 sm:p-10">
         <h2 className="font-display text-xl font-semibold text-ink">
           Other ways to reach me
         </h2>
         <dl className="mt-6 space-y-4 text-sm">
           {contactLinks.map((item) => (
-            <div
-              key={item.label}
-              className="rounded-[1.5rem] px-5 py-4 shadow-neu-inset-sm"
-            >
+            <div key={item.label} className="well rounded-[1.5rem] px-5 py-4">
               <dt className="font-semibold text-ink">{item.label}</dt>
               <dd className="break-words">
                 <Link
                   href={item.href}
                   target={item.external ? '_blank' : undefined}
                   rel={item.external ? 'noopener noreferrer' : undefined}
-                  className="inline-flex min-h-10 items-center font-semibold text-primary-text underline-offset-4 hover:underline"
+                  className="inline-flex min-h-11 items-center font-semibold text-primary-text underline-offset-4 hover:underline"
                 >
                   {item.display}
                 </Link>

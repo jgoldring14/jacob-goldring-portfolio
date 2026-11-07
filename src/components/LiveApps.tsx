@@ -77,10 +77,10 @@ const apps: Array<LiveApp> = [
 
 function AppCard({ app }: { app: LiveApp }) {
   return (
-    <article className="flex w-full flex-col rounded-[2rem] bg-surface p-6 shadow-neu transition duration-300 ease-apple-out hover:-translate-y-1 hover:shadow-neu-lg motion-reduce:hover:translate-y-0 sm:p-8">
+    <article className="glass glow flex w-full flex-col rounded-[1.75rem] p-6 sm:p-8">
       <div className="flex items-start justify-between gap-4">
         <div>
-          <p className="font-display text-xs font-semibold uppercase tracking-[0.2em] text-accent">
+          <p className="font-display text-xs font-semibold uppercase tracking-[0.14em] text-accent">
             {app.audience}
           </p>
           <h3 className="mt-2 font-display text-2xl font-semibold text-ink">
@@ -88,7 +88,7 @@ function AppCard({ app }: { app: LiveApp }) {
           </h3>
         </div>
         {app.icon && (
-          <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl shadow-neu-inset-sm">
+          <div className="well flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl">
             <Image
               src={app.icon}
               alt=""
@@ -99,8 +99,8 @@ function AppCard({ app }: { app: LiveApp }) {
         )}
       </div>
       <p className="mt-4 text-base text-muted">{app.description}</p>
-      <div className="mt-6 rounded-[1.25rem] px-5 py-4 shadow-neu-inset-sm">
-        <p className="font-display text-xs font-semibold uppercase tracking-[0.2em] text-muted">
+      <div className="well mt-6 rounded-[1.25rem] px-5 py-4">
+        <p className="font-display text-xs font-semibold uppercase tracking-[0.14em] text-muted">
           My part
         </p>
         <p className="mt-1 text-base font-medium text-ink">{app.myPart}</p>
@@ -111,10 +111,7 @@ function AppCard({ app }: { app: LiveApp }) {
         className="mt-6 flex flex-auto flex-wrap content-start gap-2"
       >
         {app.tech.map((item) => (
-          <li
-            key={item}
-            className="cursor-default rounded-full px-3 py-1 text-xs font-semibold text-muted shadow-neu-inset-sm transition duration-200 hover:bg-convex hover:text-primary-text hover:shadow-neu-sm"
-          >
+          <li key={item} className="chip">
             {item}
           </li>
         ))}

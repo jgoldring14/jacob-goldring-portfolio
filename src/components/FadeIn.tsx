@@ -12,7 +12,7 @@ const easeAppleOut = [0.22, 1, 0.36, 1] as const
 /**
  * Fades a block up into place once a fifth of it is on screen. `blur` also brings it
  * from soft to sharp; keep that for text and cards, since blurring a large panel is
- * expensive to draw. Only opacity, transform and filter animate, so the neumorphic
+ * expensive to draw. Only opacity, transform and filter animate, so the glass
  * shadows are never repainted frame by frame.
  */
 export function FadeIn({

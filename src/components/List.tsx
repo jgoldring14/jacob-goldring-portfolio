@@ -54,7 +54,7 @@ export function ListItem({
       <FadeIn blur>
         <span
           aria-hidden="true"
-          className="absolute left-0 top-0.5 flex h-6 w-6 items-center justify-center rounded-full bg-surface bg-convex shadow-neu-sm"
+          className="glass absolute left-0 top-0.5 flex h-6 w-6 items-center justify-center rounded-full"
         >
           <motion.span
             variants={{ hidden: { scale: 0 }, visible: { scale: 1 } }}

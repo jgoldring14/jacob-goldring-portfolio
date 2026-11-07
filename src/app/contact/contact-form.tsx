@@ -119,7 +119,7 @@ export function ContactForm() {
 
   if (sendState === 'sent') {
     return (
-      <FadeIn className="rounded-[2.5rem] bg-surface p-8 shadow-neu sm:p-10">
+      <FadeIn className="glass rounded-[2rem] p-8 sm:p-10">
         <h2
           className="font-display text-2xl font-semibold text-ink"
           role="status"
@@ -137,7 +137,7 @@ export function ContactForm() {
   const isChecked = checkedTheme !== null && checkedTheme === theme
 
   return (
-    <FadeIn className="rounded-[2.5rem] bg-surface p-8 shadow-neu sm:p-10">
+    <FadeIn className="glass rounded-[2rem] p-8 sm:p-10">
       <form onSubmit={handleSubmit}>
         <h2 className="font-display text-xl font-semibold text-ink">
           Send a message
@@ -228,7 +228,7 @@ export function ContactForm() {
 }
 
 const fieldClassName =
-  'peer block w-full rounded-2xl border border-line/40 bg-surface px-6 pb-4 pt-12 text-base/6 text-ink shadow-neu-inset-sm transition focus:border-primary-text'
+  'peer well block w-full rounded-2xl border-line px-6 pb-4 pt-12 text-base/6 text-ink transition focus:border-primary-text focus:bg-transparent focus:outline-none focus:ring-4 focus:ring-primary/15'
 
 const labelClassName =
   'pointer-events-none absolute left-6 origin-left text-base/6 text-muted transition-all duration-200 peer-focus:scale-75 peer-focus:font-semibold peer-focus:text-ink peer-[:not(:placeholder-shown)]:scale-75 peer-[:not(:placeholder-shown)]:font-semibold peer-[:not(:placeholder-shown)]:text-ink'

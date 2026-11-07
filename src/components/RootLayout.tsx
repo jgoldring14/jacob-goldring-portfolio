@@ -16,6 +16,7 @@ import { Container } from '@/components/Container'
 import { Footer } from '@/components/Footer'
 import { SocialMedia } from '@/components/SocialMedia'
 import { ThemeToggle } from '@/components/ThemeToggle'
+import { useCardSpotlight } from '@/lib/useCardSpotlight'
 
 const navigation = [
   { title: 'Work', href: '/work' },
@@ -56,8 +57,8 @@ function NavLink({
       className={clsx(
         'flex h-11 items-center rounded-full px-5 text-sm font-semibold transition duration-150',
         active
-          ? 'text-primary-text shadow-neu-inset-sm'
-          : 'text-ink hover:text-primary-text',
+          ? 'bg-ink/[0.06] text-ink'
+          : 'text-muted hover:bg-ink/[0.04] hover:text-ink',
       )}
     >
       {children}
@@ -84,9 +85,9 @@ function Header() {
   }, [expanded])
 
   return (
-    <header className="relative z-40 pt-6 sm:pt-8">
+    <header className="sticky top-0 z-40 pt-3 before:pointer-events-none before:absolute before:inset-x-0 before:top-0 before:-z-10 before:h-12 before:bg-gradient-to-b before:from-surface before:to-surface/0 sm:pt-4 sm:before:h-14">
       <Container>
-        <div className="flex items-center justify-between gap-2 rounded-[2rem] bg-surface py-2.5 pl-6 pr-2.5 shadow-neu">
+        <div className="frost glass flex items-center justify-between gap-2 rounded-full py-2 pl-6 pr-2 [--glass-alpha:0.7] dark:[--glass-alpha:0.55] dark:[--glass:14_17_24]">
           <Link
             href="/"
             className="whitespace-nowrap font-display text-lg font-semibold tracking-tight text-ink sm:text-xl"
@@ -94,7 +95,7 @@ function Header() {
             Jacob Goldring
           </Link>
 
-          <nav aria-label="Main" className="hidden items-center gap-2 md:flex">
+          <nav aria-label="Main" className="hidden items-center gap-1 md:flex">
             {navigation.map((item) => (
               <NavLink key={item.href} href={item.href}>
                 {item.title}
@@ -103,7 +104,11 @@ function Header() {
           </nav>
 
           <div className="flex items-center gap-2 min-[360px]:gap-3">
-            <Button href="/contact" className="hidden md:inline-flex">
+            <Button
+              href="/contact"
+              variant="secondary"
+              className="hidden md:inline-flex"
+            >
               Contact
             </Button>
             <ThemeToggle />
@@ -115,8 +120,8 @@ function Header() {
               aria-controls={panelId}
               aria-label={expanded ? 'Close menu' : 'Open menu'}
               className={clsx(
-                'flex h-11 w-11 items-center justify-center rounded-full bg-surface text-ink transition md:hidden',
-                expanded ? 'shadow-neu-inset-sm' : 'bg-convex shadow-neu-sm',
+                'flex h-11 w-11 items-center justify-center rounded-full text-ink transition md:hidden',
+                expanded ? 'well' : 'glass',
               )}
             >
               {expanded ? (
@@ -136,7 +141,7 @@ function Header() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -8 }}
               transition={{ duration: 0.18 }}
-              className="absolute inset-x-6 top-full mt-4 rounded-[2rem] bg-surface p-4 shadow-neu-lg md:hidden"
+              className="frost glass absolute inset-x-6 top-full mt-3 rounded-[1.75rem] p-4 [--glass-alpha:0.85] dark:[--glass:14_17_24] dark:[--glass-alpha:0.7] md:hidden"
             >
               <nav aria-label="Main" className="flex flex-col gap-2">
                 {[...navigation, { title: 'Contact', href: '/contact' }].map(
@@ -161,6 +166,7 @@ function Header() {
 export function RootLayout({ children }: { children: React.ReactNode }) {
   let pathname = usePathname()
   let shouldReduceMotion = useReducedMotion()
+  useCardSpotlight()
 
   return (
     <MotionConfig transition={shouldReduceMotion ? { duration: 0 } : undefined}>

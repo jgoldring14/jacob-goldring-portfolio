@@ -34,7 +34,7 @@ function Navigation() {
                 <li key={link.title}>
                   <Link
                     href={link.href}
-                    className="inline-flex min-h-10 items-center transition hover:text-primary-text"
+                    className="inline-flex min-h-11 items-center transition hover:text-primary-text"
                   >
                     {link.title}
                   </Link>
@@ -51,10 +51,10 @@ function Navigation() {
 export function Footer() {
   return (
     <Container as="footer" className="mt-24 w-full pb-10 sm:mt-32 lg:mt-40">
-      <FadeIn className="rounded-[2.5rem] bg-surface p-8 shadow-neu sm:p-12">
+      <FadeIn className="glass rounded-[2rem] p-8 sm:p-12">
         <div className="grid grid-cols-1 gap-x-8 gap-y-12 lg:grid-cols-2">
           <div>
-            <h2 className="font-display text-3xl font-medium tracking-tight text-ink sm:text-4xl">
+            <h2 className="font-display text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
               Say hello
             </h2>
             <Button href="/contact" size="lg" className="mt-8">

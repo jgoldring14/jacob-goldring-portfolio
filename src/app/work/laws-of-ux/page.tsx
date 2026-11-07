@@ -86,14 +86,12 @@ function Section({
 
 function FindingCard({ finding }: { finding: Finding }) {
   return (
-    <div className="rounded-[1.75rem] p-6 shadow-neu-inset">
-      <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted">
+    <div className="well rounded-[1.75rem] p-6">
+      <p className="text-xs font-semibold uppercase tracking-[0.14em] text-muted">
         {finding.source}
       </p>
       <div className="mt-4 flex flex-wrap items-center gap-3">
-        <span className="rounded-full bg-surface bg-convex px-3 py-1 text-xs font-semibold text-accent shadow-neu-sm">
-          {finding.severity}
-        </span>
+        <span className="eyebrow py-1 text-xs">{finding.severity}</span>
         <code className="break-all text-sm text-ink">{finding.location}</code>
       </div>
       <dl className="mt-5 grid grid-cols-[3rem_1fr] gap-x-4 gap-y-3 text-sm">
@@ -110,12 +108,12 @@ function FindingCard({ finding }: { finding: Finding }) {
 
 function Aside() {
   return (
-    <FadeIn className="space-y-8 lg:sticky lg:top-8">
-      <div className="rounded-[2.5rem] bg-surface p-4 shadow-neu">
+    <FadeIn className="space-y-8 lg:sticky lg:top-28">
+      <div className="glass rounded-[2rem] p-4">
         <Image
           src={imageLawsOfUxCover}
           alt="Cover slide of the laws-of-ux carousel: Your users shouldn't need a manual."
-          className="h-auto w-full rounded-[2rem]"
+          className="h-auto w-full rounded-[1.75rem]"
           sizes="(min-width: 1024px) 20rem, 100vw"
           priority
         />
@@ -124,10 +122,10 @@ function Aside() {
         {facts.map((fact) => (
           <div
             key={fact.value}
-            className="flex items-center gap-5 rounded-[1.75rem] bg-surface p-4 shadow-neu-sm"
+            className="glass flex items-center gap-5 rounded-[1.75rem] p-4"
           >
             <dt className="order-last text-sm text-muted">{fact.label}</dt>
-            <dd className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl font-display text-2xl font-semibold text-primary-text shadow-neu-inset-sm">
+            <dd className="well flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl font-display text-2xl font-semibold text-primary-text">
               {fact.value}
             </dd>
           </div>
@@ -200,10 +198,7 @@ export default function LawsOfUx() {
                 className="flex flex-wrap gap-2 pt-2"
               >
                 {laws.map((law) => (
-                  <li
-                    key={law}
-                    className="cursor-default rounded-full px-3 py-1 text-xs font-semibold text-ink shadow-neu-inset-sm transition duration-200 hover:bg-convex hover:text-primary-text hover:shadow-neu-sm"
-                  >
+                  <li key={law} className="chip">
                     {law}
                   </li>
                 ))}
