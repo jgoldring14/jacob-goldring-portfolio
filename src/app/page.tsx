@@ -113,9 +113,9 @@ function Hero() {
           >
             I build apps people use every day, from the database all the way to
             the screen you tap. By day I work on a banking app that credit
-            unions put their own name on. After hours I&apos;m building Vamo, a
-            startup I <span className="whitespace-nowrap">co-founded</span> for
-            local markets.
+            unions put their own name on. After hours I’m building Vamo, a
+            startup I <span className="whitespace-nowrap">co-founded</span>.
+            Discover the local food and markets around you wherever you go.
           </p>
           <div className="rise" style={{ '--d': '1050ms' }}>
             <ProfileActions className="mt-10" />
