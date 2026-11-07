@@ -309,6 +309,20 @@
     transition: opacity 0.3s ease;
   }
 
+  /*
+   * In dark mode the light starts blue and warms to a hint of teal at its edge, the
+   * same pairing as the hero's gradient line. The center keeps the same strength so
+   * it never washes out text.
+   */
+  .dark .glow::before {
+    background: radial-gradient(
+      22rem circle at var(--x, 50%) var(--y, 50%),
+      rgb(var(--primary) / 0.16),
+      rgb(var(--teal-text) / 0.07) 38%,
+      transparent 62%
+    );
+  }
+
   @media (hover: hover) and (pointer: fine) {
     .glow:hover::before {
       opacity: 1;
