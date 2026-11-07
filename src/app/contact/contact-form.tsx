@@ -2,10 +2,11 @@
 
 import { useState, useId, useEffect } from 'react'
 import Link from 'next/link'
+import ReCAPTCHA from 'react-google-recaptcha'
 
 import { Button } from '@/components/Button'
 import { FadeIn } from '@/components/FadeIn'
-import ReCAPTCHA from 'react-google-recaptcha'
+import { useTheme } from '@/lib/useTheme'
 
 import type { ChangeEvent, FormEvent } from 'react'
 
@@ -29,23 +30,6 @@ interface FormValues {
   name: string
   email: string
   message: string
-}
-
-/** The site theme from the `dark` class on <html>, which follows the theme switch. Null until mounted. */
-function useTheme() {
-  const [theme, setTheme] = useState<'light' | 'dark' | null>(null)
-
-  useEffect(() => {
-    const root = document.documentElement
-    const update = () =>
-      setTheme(root.classList.contains('dark') ? 'dark' : 'light')
-    update()
-    const observer = new MutationObserver(update)
-    observer.observe(root, { attributes: true, attributeFilter: ['class'] })
-    return () => observer.disconnect()
-  }, [])
-
-  return theme
 }
 
 function EmailLink() {
@@ -105,10 +89,6 @@ export function ContactForm() {
       setSendState('error')
     }
   }
-
-  useEffect(() => {
-    setFormValues({ name: '', email: '', message: '' })
-  }, [])
 
   useEffect(() => {
     const timer = setTimeout(() => {
