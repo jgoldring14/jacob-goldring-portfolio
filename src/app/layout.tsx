@@ -14,7 +14,7 @@ const inter = Inter({
 })
 
 const description =
-  'Jacob Goldring is a full stack engineer who builds digital banking for credit unions. He is also co-founder and CTO of Vamo, two apps and a website for local markets.'
+  'Jacob Goldring is a full stack engineer who builds digital banking for credit unions. He is also co-founder and CTO of Vamo, a startup for local markets.'
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),

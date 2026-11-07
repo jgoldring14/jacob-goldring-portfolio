@@ -2,6 +2,7 @@ import { type Metadata } from 'next'
 import Image from 'next/image'
 
 import { Button } from '@/components/Button'
+import { ChipList } from '@/components/ChipList'
 import { Container } from '@/components/Container'
 import { FadeIn } from '@/components/FadeIn'
 import { List, ListItem } from '@/components/List'
@@ -87,12 +88,12 @@ function Section({
 function FindingCard({ finding }: { finding: Finding }) {
   return (
     <div className="well rounded-[1.75rem] p-6">
-      <p className="text-xs font-semibold uppercase tracking-[0.14em] text-muted">
+      <p className="text-xs font-semibold tracking-[0.14em] text-muted uppercase">
         {finding.source}
       </p>
       <div className="mt-4 flex flex-wrap items-center gap-3">
         <span className="eyebrow py-1 text-xs">{finding.severity}</span>
-        <code className="break-all text-sm text-ink">{finding.location}</code>
+        <code className="text-sm break-all text-ink">{finding.location}</code>
       </div>
       <dl className="mt-5 grid grid-cols-[3rem_1fr] gap-x-4 gap-y-3 text-sm">
         <dt className="font-semibold text-ink">Law</dt>
@@ -109,7 +110,7 @@ function FindingCard({ finding }: { finding: Finding }) {
 function Aside() {
   return (
     <FadeIn className="space-y-8 lg:sticky lg:top-28">
-      <div className="glass rounded-[2rem] p-4">
+      <div className="glass rounded-4xl p-4">
         <Image
           src={imageLawsOfUxCover}
           alt="Cover slide of the laws-of-ux carousel: Your users shouldn't need a manual."
@@ -122,7 +123,7 @@ function Aside() {
         {facts.map((fact) => (
           <div
             key={fact.value}
-            className="glass flex items-center gap-5 rounded-[1.75rem] p-4"
+            className="glass glow flex items-center gap-5 rounded-[1.75rem] p-4"
           >
             <dt className="order-last text-sm text-muted">{fact.label}</dt>
             <dd className="well flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl font-display text-2xl font-semibold text-primary-text">
@@ -192,17 +193,11 @@ export default function LawsOfUx() {
                 details live in 19 reference files that only load when a review
                 needs them.
               </p>
-              <ul
-                role="list"
+              <ChipList
+                items={laws}
                 aria-label="The ten laws"
-                className="flex flex-wrap gap-2 pt-2"
-              >
-                {laws.map((law) => (
-                  <li key={law} className="chip">
-                    {law}
-                  </li>
-                ))}
-              </ul>
+                className="gap-2 pt-2"
+              />
             </Section>
 
             <Section title="How it works">
@@ -274,7 +269,7 @@ export default function LawsOfUx() {
             </Section>
           </div>
 
-          <aside aria-label="At a glance" className="order-first lg:order-none">
+          <aside aria-label="At a glance" className="order-first lg:order-0">
             <Aside />
           </aside>
         </div>

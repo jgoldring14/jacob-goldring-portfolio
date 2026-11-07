@@ -2,6 +2,9 @@ import { type MetadataRoute } from 'next'
 
 import { SITE_URL } from '@/lib/site'
 
+// Built once at export time, which `output: 'export'` requires.
+export const dynamic = 'force-static'
+
 /** Static sitemap for every route on the site. */
 export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date()

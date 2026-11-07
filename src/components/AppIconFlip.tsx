@@ -8,7 +8,7 @@ import imageVamoHostIcon from '../../public/images/vamo-host-icon.png'
 import imageVamoIcon from '../../public/images/vamo-icon.png'
 
 const faceClassName =
-  'absolute inset-0 h-full w-full rounded-[22%] shadow-[0_24px_48px_-20px_rgb(var(--shadow)/0.6)] [backface-visibility:hidden]'
+  'absolute inset-0 h-full w-full rounded-[22%] shadow-[0_24px_48px_-20px_rgb(var(--shadow)/0.6)] backface-hidden'
 
 /**
  * The Vamo and Vamo Host app icons on the two sides of one tile, left unlabelled as an
@@ -25,16 +25,16 @@ export function AppIconFlip({ className }: { className?: string }) {
       aria-label="Show the Vamo Host app icon"
       onClick={() => setFlipped((value) => !value)}
       className={clsx(
-        'well group mx-auto rounded-[2.25rem] p-5 [perspective:1200px] sm:rounded-[2.75rem] sm:p-6',
+        'well group mx-auto rounded-[2.25rem] p-5 perspective-distant sm:rounded-[2.75rem] sm:p-6',
         className,
       )}
     >
       <span
         className={clsx(
-          'relative block h-28 w-28 transition-transform duration-700 ease-apple-out [transform-style:preserve-3d] motion-reduce:transition-none sm:h-52 sm:w-52',
+          'relative block h-28 w-28 transition-transform duration-700 ease-apple-out transform-3d motion-reduce:transition-none sm:h-52 sm:w-52',
           flipped
-            ? '[transform:rotateY(180deg)] [@media(hover:hover)]:group-hover:[transform:rotateY(0deg)]'
-            : '[@media(hover:hover)]:group-hover:[transform:rotateY(180deg)]',
+            ? 'transform-[rotateY(180deg)] [@media(hover:hover)]:group-hover:transform-[rotateY(0deg)]'
+            : '[@media(hover:hover)]:group-hover:transform-[rotateY(180deg)]',
         )}
       >
         <Image
@@ -49,7 +49,7 @@ export function AppIconFlip({ className }: { className?: string }) {
           alt=""
           className={clsx(
             faceClassName,
-            'ring-1 ring-line/20 [transform:rotateY(180deg)]',
+            'transform-[rotateY(180deg)] ring-1 ring-line/20',
           )}
           sizes="13rem"
           priority

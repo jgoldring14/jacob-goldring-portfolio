@@ -3,7 +3,9 @@ import { type Metadata } from 'next'
 import Image from 'next/image'
 
 import { AppIconFlip } from '@/components/AppIconFlip'
+import { ChipList } from '@/components/ChipList'
 import { Container } from '@/components/Container'
+import { CountUp } from '@/components/CountUp'
 import { FadeIn, FadeInStagger } from '@/components/FadeIn'
 import { HowItsBuilt } from '@/components/HowItsBuilt'
 import { List, ListItem } from '@/components/List'
@@ -14,8 +16,8 @@ import { Tilt } from '@/components/Tilt'
 import imageJacobIllustrated from '../../public/images/jacob-illustrated.webp'
 import imageLaptopDesk from '../../public/images/laptop-desk.jpg'
 
-const stats = [
-  { value: '~200', label: 'vendors on Vamo' },
+const stats: Array<{ value: string; label: string; countTo?: number }> = [
+  { value: '~200', label: 'vendors on Vamo', countTo: 200 },
   { value: '2', label: 'apps live on iOS and Android' },
   { value: '2024', label: 'first app live in production' },
 ]
@@ -63,7 +65,7 @@ function Portrait() {
           <Image
             src={imageJacobIllustrated}
             alt="Jacob Goldring"
-            className="h-full w-full object-cover [transform:rotate(-45deg)_scale(1.45)]"
+            className="h-full w-full transform-[rotate(-45deg)_scale(1.45)] object-cover"
             sizes="20rem"
             priority
           />
@@ -72,8 +74,6 @@ function Portrait() {
     </Tilt>
   )
 }
-
-const nowBuilding = 'Square catalog sync for Vamo'
 
 /**
  * Plays once on load and is pure CSS, so the hero shows on first paint without waiting
@@ -88,7 +88,7 @@ function Hero() {
       <div className="grid items-center gap-16 lg:grid-cols-[1fr_auto]">
         <div className="max-w-4xl">
           <p className="eyebrow rise">Hi, I&apos;m Jacob</p>
-          <h1 className="mt-6 font-display text-[clamp(1.75rem,9vw,2.75rem)] font-semibold leading-[1.1] tracking-tight text-ink [text-wrap:balance] sm:text-7xl lg:text-[5rem] lg:leading-[1.05]">
+          <h1 className="mt-6 font-display text-[clamp(1.75rem,9vw,2.75rem)] leading-[1.1] font-semibold tracking-tight text-balance text-ink sm:text-7xl sm:tracking-[-0.035em] lg:text-[5rem] lg:leading-[1.05]">
             <span className="block">
               {firstLine.map((word, index) => (
                 <Fragment key={word}>
@@ -109,7 +109,7 @@ function Hero() {
           </h1>
           <p
             className="rise mt-8 max-w-2xl text-xl text-muted"
-            style={{ '--d': '520ms' }}
+            style={{ '--d': '900ms' }}
           >
             I build apps people use every day, from the database all the way to
             the screen you tap. By day I work on a banking app that credit
@@ -117,18 +117,11 @@ function Hero() {
             startup I <span className="whitespace-nowrap">co-founded</span> for
             local markets.
           </p>
-          <div className="rise" style={{ '--d': '620ms' }}>
+          <div className="rise" style={{ '--d': '1050ms' }}>
             <ProfileActions className="mt-10" />
-            <p className="glass mt-8 inline-flex items-center gap-3 rounded-full py-2 pl-3 pr-4 text-sm text-muted">
-              <span className="now-dot" aria-hidden="true" />
-              <span>
-                <span className="font-semibold text-ink">Now building</span>{' '}
-                {nowBuilding}
-              </span>
-            </p>
           </div>
         </div>
-        <div className="rise-scale hidden lg:block" style={{ '--d': '200ms' }}>
+        <div className="rise-scale hidden lg:block" style={{ '--d': '300ms' }}>
           <Portrait />
         </div>
       </div>
@@ -139,12 +132,12 @@ function Hero() {
 function MahaloSection() {
   return (
     <Container className="mt-24 sm:mt-32 lg:mt-40">
-      <FadeIn className="glass grid items-center gap-10 rounded-[2rem] p-8 sm:p-12 lg:grid-cols-[1fr_auto] lg:gap-12">
+      <FadeIn className="glass grid items-center gap-10 rounded-4xl p-8 sm:p-12 lg:grid-cols-[1fr_auto] lg:gap-12">
         <div className="max-w-2xl">
           <h2>
             <span className="eyebrow mb-6">Mahalo Banking · Fintech</span>
             <span className="sr-only"> - </span>
-            <span className="block font-display text-3xl font-semibold tracking-tight text-ink [text-wrap:balance] sm:text-5xl">
+            <span className="block font-display text-3xl font-semibold tracking-tight text-balance text-ink sm:text-5xl">
               One codebase that becomes a different app for every credit union
             </span>
           </h2>
@@ -157,16 +150,10 @@ function MahaloSection() {
           </p>
         </div>
         <div className="well rounded-[1.75rem] p-6 sm:p-8 lg:w-72">
-          <h3 className="font-display text-xs font-semibold uppercase tracking-[0.14em] text-muted">
+          <h3 className="font-display text-xs font-semibold tracking-[0.14em] text-muted uppercase">
             What I work on
           </h3>
-          <ul role="list" className="mt-5 flex flex-wrap gap-3">
-            {mahaloWork.map((item) => (
-              <li key={item} className="chip chip-lg">
-                {item}
-              </li>
-            ))}
-          </ul>
+          <ChipList items={mahaloWork} large className="mt-5 gap-3" />
         </div>
       </FadeIn>
     </Container>
@@ -176,20 +163,20 @@ function MahaloSection() {
 function VamoSection() {
   return (
     <Container className="mt-8">
-      <FadeIn className="glass grid items-center gap-8 rounded-[2rem] p-8 sm:gap-12 sm:p-12 lg:grid-cols-[auto_1fr] lg:gap-16">
+      <FadeIn className="glass grid items-center gap-8 rounded-4xl p-8 sm:gap-12 sm:p-12 lg:grid-cols-[auto_1fr] lg:gap-16">
         <AppIconFlip />
         <div className="max-w-2xl">
           <h2>
             <span className="eyebrow mb-6">Vamo · Local markets</span>
             <span className="sr-only"> - </span>
-            <span className="block font-display text-3xl font-semibold tracking-tight text-ink [text-wrap:balance] sm:text-5xl">
+            <span className="block font-display text-3xl font-semibold tracking-tight text-balance text-ink sm:text-5xl">
               Built for the whole market
             </span>
           </h2>
           <p className="mt-6 text-xl text-muted">
-            Vamo started as a street food discovery app. Now it&apos;s two apps
-            and a website for local markets. Shoppers find what&apos;s on and
-            vendors book their spots. Hosts run the whole market from their
+            Vamo started as a street food discovery app. Now it&apos;s one
+            connected ecosystem for local markets. Shoppers find what&apos;s on
+            and vendors book their spots. Hosts run the whole market from their
             phone. It&apos;s just my business partner and me, so we both do a
             lot of everything.
           </p>
@@ -197,13 +184,17 @@ function VamoSection() {
             {stats.map((stat) => (
               <div
                 key={stat.label}
-                className="well flex items-center gap-3 rounded-[1.5rem] px-5 py-3 sm:flex-col sm:items-start sm:gap-0 sm:py-4"
+                className="well flex items-center gap-3 rounded-3xl px-5 py-3 sm:flex-col sm:items-start sm:gap-0 sm:py-4"
               >
                 <dt className="order-last text-sm text-muted sm:mt-1">
                   {stat.label}
                 </dt>
-                <dd className="min-w-[4rem] font-display text-2xl font-semibold tracking-tight text-primary-text sm:min-w-0 sm:text-3xl">
-                  {stat.value}
+                <dd className="min-w-16 font-display text-2xl font-semibold tracking-tight text-primary-text sm:min-w-0 sm:text-3xl sm:tracking-[-0.015em]">
+                  {stat.countTo ? (
+                    <CountUp value={stat.countTo} prefix="~" />
+                  ) : (
+                    stat.value
+                  )}
                 </dd>
               </div>
             ))}
@@ -265,13 +256,11 @@ function StackSection() {
                 <h3 className="font-display text-2xl font-semibold text-ink">
                   {group.title}
                 </h3>
-                <ul role="list" className="mt-6 flex flex-wrap gap-3">
-                  {group.items.split(', ').map((item) => (
-                    <li key={item} className="chip chip-lg">
-                      {item}
-                    </li>
-                  ))}
-                </ul>
+                <ChipList
+                  items={group.items.split(', ')}
+                  large
+                  className="mt-6 gap-3"
+                />
               </article>
             </FadeIn>
           ))}
@@ -292,18 +281,18 @@ function Timeline() {
       <Container className="mt-16">
         <div className="lg:flex lg:items-center lg:justify-end">
           <div className="flex justify-center lg:w-1/2 lg:justify-end lg:pr-12">
-            <FadeIn className="w-full max-w-[33.75rem] flex-none lg:w-[36rem] lg:max-w-none">
-              <div className="glass rounded-[2rem] p-4 sm:p-5">
+            <FadeIn className="w-full max-w-135 flex-none lg:w-xl lg:max-w-none">
+              <div className="glass rounded-4xl p-4 sm:p-5">
                 <Image
                   src={imageLaptopDesk}
                   alt=""
                   sizes="(min-width: 1024px) 34rem, (min-width: 640px) 31rem, 100vw"
-                  className="aspect-[4/3] w-full rounded-[1.75rem] object-cover grayscale"
+                  className="aspect-4/3 w-full rounded-[1.75rem] object-cover grayscale"
                 />
               </div>
             </FadeIn>
           </div>
-          <List className="mt-16 lg:mt-0 lg:w-1/2 lg:min-w-[33rem] lg:pl-8">
+          <List className="mt-16 lg:mt-0 lg:w-1/2 lg:min-w-132 lg:pl-8">
             <ListItem title="Vamo, 2024 to now">
               Co-founder and CTO. Vamo started as a street food discovery app
               and grew into an app for local markets. Today it&apos;s two apps
@@ -322,7 +311,7 @@ function Timeline() {
             <ListItem title="Flatiron School, 2021">
               A full-time coding bootcamp. I put in about 16 hours a day for
               five or six days a week. That&apos;s where I learned JavaScript
-              and React plus Ruby on Rails.
+              and React along with Ruby and Ruby on Rails.
             </ListItem>
             <ListItem title="Started coding, 2020">
               I took a JavaScript course after work every day and got hooked.

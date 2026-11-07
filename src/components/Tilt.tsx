@@ -1,6 +1,6 @@
 'use client'
 
-import { motion, useReducedMotion, useSpring } from 'framer-motion'
+import { motion, useReducedMotion, useSpring } from 'motion/react'
 
 import type { PointerEvent } from 'react'
 

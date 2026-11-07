@@ -9,7 +9,7 @@ import {
   motion,
   MotionConfig,
   useReducedMotion,
-} from 'framer-motion'
+} from 'motion/react'
 
 import { Button } from '@/components/Button'
 import { Container } from '@/components/Container'
@@ -23,28 +23,53 @@ const navigation = [
   { title: 'About', href: '/about' },
 ]
 
-function XIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
+const toggleSpring = { type: 'spring', stiffness: 300, damping: 24 } as const
+
+/** Two bars that turn into an X while the menu is open. */
+function MenuToggleIcon({ open }: { open: boolean }) {
   return (
-    <svg viewBox="0 0 24 24" aria-hidden="true" {...props}>
-      <path d="m5.636 4.223 14.142 14.142-1.414 1.414L4.222 5.637z" />
-      <path d="M4.222 18.363 18.364 4.22l1.414 1.414L5.636 19.777z" />
-    </svg>
+    <span aria-hidden="true" className="relative block h-2.5 w-5">
+      <motion.span
+        initial={false}
+        animate={open ? { y: 4, rotate: 45 } : { y: 0, rotate: 0 }}
+        transition={toggleSpring}
+        className="absolute inset-x-0 top-0 h-0.5 rounded-full bg-current"
+      />
+      <motion.span
+        initial={false}
+        animate={open ? { y: -4, rotate: -45 } : { y: 0, rotate: 0 }}
+        transition={toggleSpring}
+        className="absolute inset-x-0 bottom-0 h-0.5 rounded-full bg-current"
+      />
+    </span>
   )
 }
 
-function MenuIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true" {...props}>
-      <path d="M2 6h20v2H2zM2 16h20v2H2z" />
-    </svg>
-  )
+const menuPanel = {
+  closed: { opacity: 0, y: -8 },
+  open: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.2, staggerChildren: 0.05, delayChildren: 0.05 },
+  },
 }
 
+const menuItem = {
+  closed: { opacity: 0, y: 12 },
+  open: { opacity: 1, y: 0 },
+}
+
+/**
+ * A page link. The active page sits on a soft pill that slides over from the previous
+ * page's link when you navigate. `pillId` keeps the desktop and menu pills apart.
+ */
 function NavLink({
   href,
+  pillId,
   children,
 }: {
   href: string
+  pillId: string
   children: React.ReactNode
 }) {
   let pathname = usePathname()
@@ -55,12 +80,17 @@ function NavLink({
       href={href}
       aria-current={active ? 'page' : undefined}
       className={clsx(
-        'flex h-11 items-center rounded-full px-5 text-sm font-semibold transition duration-150',
-        active
-          ? 'bg-ink/[0.06] text-ink'
-          : 'text-muted hover:bg-ink/[0.04] hover:text-ink',
+        'relative isolate flex h-11 items-center rounded-full px-5 text-sm font-semibold transition duration-150',
+        active ? 'text-ink' : 'text-muted hover:bg-ink/4 hover:text-ink',
       )}
     >
+      {active && (
+        <motion.span
+          layoutId={pillId}
+          transition={{ type: 'spring', stiffness: 400, damping: 34 }}
+          className="absolute inset-0 -z-10 rounded-full bg-ink/6"
+        />
+      )}
       {children}
     </Link>
   )
@@ -68,9 +98,19 @@ function NavLink({
 
 /** Shared header: name, page links, Contact and the theme switch. Collapses to a menu below md. */
 function Header() {
+  let pathname = usePathname()
   let panelId = useId()
-  let [expanded, setExpanded] = useState(false)
   let toggleRef = useRef<HTMLButtonElement>(null)
+  let [expanded, setExpanded] = useState(false)
+  let [menuPath, setMenuPath] = useState(pathname)
+
+  // Close the menu when the page changes. Adjusting state during render, as React
+  // recommends, keeps the header mounted so it only drops in once and the nav pill can
+  // slide between pages.
+  if (menuPath !== pathname) {
+    setMenuPath(pathname)
+    setExpanded(false)
+  }
 
   useEffect(() => {
     if (!expanded) return
@@ -85,19 +125,19 @@ function Header() {
   }, [expanded])
 
   return (
-    <header className="sticky top-0 z-40 pt-3 before:pointer-events-none before:absolute before:inset-x-0 before:top-0 before:-z-10 before:h-12 before:bg-gradient-to-b before:from-surface before:to-surface/0 sm:pt-4 sm:before:h-14">
+    <header className="sticky top-0 z-40 pt-3 before:pointer-events-none before:absolute before:inset-x-0 before:top-0 before:-z-10 before:h-12 before:bg-linear-to-b before:from-surface before:to-surface/0 sm:pt-4 sm:before:h-14">
       <Container>
-        <div className="frost glass flex items-center justify-between gap-2 rounded-full py-2 pl-6 pr-2 [--glass-alpha:0.7] dark:[--glass-alpha:0.55] dark:[--glass:14_17_24]">
+        <div className="frost glass drop-in flex items-center justify-between gap-2 rounded-full py-2 pr-2 pl-6 [--glass-alpha:0.7] dark:[--glass-alpha:0.55] dark:[--glass:14_17_24]">
           <Link
             href="/"
-            className="whitespace-nowrap font-display text-lg font-semibold tracking-tight text-ink sm:text-xl"
+            className="font-display text-lg font-semibold tracking-tight whitespace-nowrap text-ink sm:text-xl"
           >
             Jacob Goldring
           </Link>
 
           <nav aria-label="Main" className="hidden items-center gap-1 md:flex">
             {navigation.map((item) => (
-              <NavLink key={item.href} href={item.href}>
+              <NavLink key={item.href} href={item.href} pillId="nav-pill">
                 {item.title}
               </NavLink>
             ))}
@@ -107,7 +147,7 @@ function Header() {
             <Button
               href="/contact"
               variant="secondary"
-              className="hidden md:inline-flex"
+              className="max-md:hidden"
             >
               Contact
             </Button>
@@ -124,11 +164,7 @@ function Header() {
                 expanded ? 'well' : 'glass',
               )}
             >
-              {expanded ? (
-                <XIcon className="h-5 w-5 fill-current" />
-              ) : (
-                <MenuIcon className="h-5 w-5 fill-current" />
-              )}
+              <MenuToggleIcon open={expanded} />
             </button>
           </div>
         </div>
@@ -137,24 +173,29 @@ function Header() {
           {expanded && (
             <motion.div
               id={panelId}
-              initial={{ opacity: 0, y: -8 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -8 }}
-              transition={{ duration: 0.18 }}
-              className="frost glass absolute inset-x-6 top-full mt-3 rounded-[1.75rem] p-4 [--glass-alpha:0.85] dark:[--glass:14_17_24] dark:[--glass-alpha:0.7] md:hidden"
+              variants={menuPanel}
+              initial="closed"
+              animate="open"
+              exit="closed"
+              className="frost glass absolute inset-x-6 top-full mt-3 rounded-[1.75rem] p-4 [--glass-alpha:0.85] md:hidden dark:[--glass-alpha:0.7] dark:[--glass:14_17_24]"
             >
               <nav aria-label="Main" className="flex flex-col gap-2">
                 {[...navigation, { title: 'Contact', href: '/contact' }].map(
                   (item) => (
-                    <NavLink key={item.href} href={item.href}>
-                      {item.title}
-                    </NavLink>
+                    <motion.div key={item.href} variants={menuItem}>
+                      <NavLink href={item.href} pillId="menu-pill">
+                        {item.title}
+                      </NavLink>
+                    </motion.div>
                   ),
                 )}
               </nav>
-              <div className="mt-4 border-t border-line/30 px-5 pt-5">
+              <motion.div
+                variants={menuItem}
+                className="mt-4 border-t border-line/30 px-5 pt-5"
+              >
                 <SocialMedia />
-              </div>
+              </motion.div>
             </motion.div>
           )}
         </AnimatePresence>
@@ -164,13 +205,15 @@ function Header() {
 }
 
 export function RootLayout({ children }: { children: React.ReactNode }) {
-  let pathname = usePathname()
   let shouldReduceMotion = useReducedMotion()
   useCardSpotlight()
 
   return (
-    <MotionConfig transition={shouldReduceMotion ? { duration: 0 } : undefined}>
-      <Header key={pathname} />
+    <MotionConfig
+      reducedMotion="user"
+      transition={shouldReduceMotion ? { duration: 0 } : undefined}
+    >
+      <Header />
       <main className="w-full flex-auto">{children}</main>
       <Footer />
     </MotionConfig>

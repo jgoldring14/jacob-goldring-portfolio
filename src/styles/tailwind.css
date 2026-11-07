@@ -1,3 +1,60 @@
+@import 'tailwindcss';
 @import './base.css';
 @import './components.css';
-@import './utilities.css';
+
+/* Dark mode follows the `dark` class on <html>, which the theme switch sets. */
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  --text-*: initial;
+  --text-xs: 0.75rem;
+  --text-xs--line-height: 1rem;
+  --text-sm: 0.875rem;
+  --text-sm--line-height: 1.5rem;
+  --text-base: 1rem;
+  --text-base--line-height: 1.75rem;
+  --text-lg: 1.125rem;
+  --text-lg--line-height: 1.75rem;
+  --text-xl: 1.25rem;
+  --text-xl--line-height: 2rem;
+  --text-2xl: 1.5rem;
+  --text-2xl--line-height: 2.25rem;
+  --text-3xl: 1.75rem;
+  --text-3xl--line-height: 2.25rem;
+  --text-3xl--letter-spacing: -0.015em;
+  --text-4xl: 2rem;
+  --text-4xl--line-height: 2.5rem;
+  --text-4xl--letter-spacing: -0.02em;
+  --text-5xl: 2.5rem;
+  --text-5xl--line-height: 3rem;
+  --text-5xl--letter-spacing: -0.025em;
+  --text-6xl: 3rem;
+  --text-6xl--line-height: 3.25rem;
+  --text-6xl--letter-spacing: -0.03em;
+  --text-7xl: 4rem;
+  --text-7xl--line-height: 4.25rem;
+  --text-7xl--letter-spacing: -0.035em;
+
+  /* SF on Apple devices, Inter (self-hosted by next/font) everywhere else. */
+  --font-sans:
+    -apple-system, BlinkMacSystemFont, var(--font-inter), 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial, sans-serif;
+  --font-display: var(--font-sans);
+
+  --ease-apple-out: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/*
+ * Inline so the utilities read the RGB tokens from base.css where they're used, which
+ * keeps light and dark switching with the `dark` class.
+ */
+@theme inline {
+  --color-surface: rgb(var(--surface));
+  --color-ink: rgb(var(--ink));
+  --color-muted: rgb(var(--muted));
+  --color-line: rgb(var(--line));
+  --color-primary: rgb(var(--primary));
+  --color-primary-ink: rgb(var(--primary-ink));
+  --color-primary-text: rgb(var(--primary-text));
+  --color-accent: rgb(var(--accent));
+}

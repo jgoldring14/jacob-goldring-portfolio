@@ -1,4 +1,21 @@
-@tailwind base;
+/*
+ * Two Tailwind 3 defaults that Tailwind 4 dropped, kept so nothing shifts: borders
+ * without a color class are light gray, and buttons show the pointer cursor.
+ */
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+
+  button:not(:disabled),
+  [role='button']:not(:disabled) {
+    cursor: pointer;
+  }
+}
 
 /*
  * Theme tokens, as space-separated RGB channels so Tailwind opacity modifiers work.
@@ -22,7 +39,6 @@
     --primary-text: 0 90 156;
     --accent: 133 96 0;
     --teal-text: 13 116 108;
-    --live: 22 163 74;
 
     --glass: 255 255 255;
     --glass-alpha: 0.62;
@@ -49,7 +65,6 @@
     --primary-text: 120 186 248;
     --accent: 245 197 66;
     --teal-text: 94 234 212;
-    --live: 74 222 128;
 
     --glass: 255 255 255;
     --glass-alpha: 0.045;

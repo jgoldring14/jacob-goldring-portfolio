@@ -1,5 +1,3 @@
-import clsx from 'clsx'
-
 import { Container } from '@/components/Container'
 import { FadeIn } from '@/components/FadeIn'
 
@@ -7,7 +5,6 @@ export function SectionIntro({
   title,
   eyebrow,
   children,
-  smaller = false,
   ...props
 }: Omit<
   React.ComponentPropsWithoutRef<typeof Container>,
@@ -16,7 +13,6 @@ export function SectionIntro({
   title: string
   eyebrow?: string
   children?: React.ReactNode
-  smaller?: boolean
 }) {
   return (
     <Container {...props}>
@@ -28,15 +24,7 @@ export function SectionIntro({
               <span className="sr-only"> - </span>
             </>
           )}
-          <span
-            className={clsx(
-              'block font-display tracking-tight [text-wrap:balance]',
-              smaller
-                ? 'text-2xl font-semibold'
-                : 'text-4xl font-semibold sm:text-5xl',
-              'text-ink',
-            )}
-          >
+          <span className="block font-display text-4xl font-semibold tracking-tight text-balance text-ink sm:text-5xl">
             {title}
           </span>
         </h2>

@@ -19,13 +19,14 @@ export function ProfileActions({ className }: { className?: string }) {
         rel="noopener noreferrer"
         className="group inline-flex h-14 items-center gap-1.5 text-base font-semibold text-primary-text underline-offset-4 transition hover:underline"
       >
-        View resume{' '}
+        Resume
         <span
           aria-hidden="true"
-          className="inline-block transition-transform duration-200 ease-apple-out group-hover:translate-x-1"
+          className="inline-block transition-transform duration-200 ease-apple-out group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
         >
-          →
+          ↗
         </span>
+        <span className="sr-only"> (PDF, opens in a new tab)</span>
       </Link>
     </div>
   )

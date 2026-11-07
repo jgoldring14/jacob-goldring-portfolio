@@ -12,7 +12,7 @@ import imageLawsOfUxCover from '../../../public/images/laws-of-ux-cover.png'
 export const metadata: Metadata = {
   title: 'Work',
   description:
-    'Vamo, Vamo Host and the Vamo website. Two apps and a website for local markets, built by Jacob Goldring and his business partner.',
+    'Vamo, Vamo Host and the Vamo website make up one ecosystem for local markets. Built by Jacob Goldring and his business partner.',
   alternates: { canonical: '/work' },
 }
 
@@ -25,7 +25,7 @@ function OtherWorkSection() {
       />
       <Container className="mt-12">
         <FadeIn>
-          <article className="glass glow grid items-center gap-8 rounded-[2rem] p-6 sm:grid-cols-[14rem_1fr] sm:p-8 lg:gap-12">
+          <article className="glass glow grid items-center gap-8 rounded-4xl p-6 sm:grid-cols-[14rem_1fr] sm:p-8 lg:gap-12">
             <div className="well rounded-[1.75rem] p-3">
               <Image
                 src={imageLawsOfUxCover}
@@ -35,7 +35,7 @@ function OtherWorkSection() {
               />
             </div>
             <div className="max-w-2xl">
-              <p className="font-display text-xs font-semibold uppercase tracking-[0.14em] text-accent">
+              <p className="font-display text-xs font-semibold tracking-[0.14em] text-accent uppercase">
                 Claude skill
               </p>
               <h3 className="mt-3 font-display text-3xl font-semibold text-ink">
@@ -64,11 +64,11 @@ export default function Work() {
       <PageIntro eyebrow="Work" title="What I build">
         <div className="space-y-6">
           <p>
-            Most of my day job is private, but this is the stuff I can actually
-            show you. Vamo is a startup I co-founded with my friend and business
-            partner. We built two apps and a website for local markets.
-            It&apos;s just the two of us, so we both do a little of everything
-            it takes to run a company.
+            Vamo is a startup I co-founded with my friend and business partner.
+            We built it as one connected ecosystem. Whatever device you&apos;re
+            on and wherever you are, Vamo is right there with you. It&apos;s
+            just the two of us, so we both do a little of everything it takes to
+            run a company.
           </p>
           <p>
             Vamo operates in Southern California and we&apos;re growing. One day

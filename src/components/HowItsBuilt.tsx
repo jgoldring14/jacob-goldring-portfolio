@@ -1,3 +1,5 @@
+import { ChipList } from '@/components/ChipList'
+import { Connector } from '@/components/Connector'
 import { FadeIn, FadeInStagger } from '@/components/FadeIn'
 
 const clients = [
@@ -6,7 +8,27 @@ const clients = [
   { name: 'Vamo website', platform: 'Next.js', detail: 'Web' },
 ]
 
-const backend = ['Postgres', 'Auth', 'Edge functions']
+const backend = [
+  {
+    title: 'Database',
+    items: [
+      'Postgres',
+      'PostGIS',
+      'Row level security',
+      'SQL functions',
+      'Realtime',
+    ],
+  },
+  {
+    title: 'Server',
+    items: ['Auth', 'Edge functions', 'Cron jobs', 'Webhooks'],
+  },
+  { title: 'Files and secrets', items: ['Storage', 'Vault'] },
+  {
+    title: 'Integrations',
+    items: ['Stripe payments', 'Push notifications', 'Email'],
+  },
+]
 
 const mine = [
   {
@@ -21,22 +43,6 @@ const mine = [
 ]
 
 /**
- * Lines that join the three client cards to the backend card below them. Below sm the
- * cards stack, so only the center line shows. From sm up the outer lines sit on the
- * column centers of a three-column grid with a 2rem gap.
- */
-function Connector() {
-  return (
-    <div aria-hidden="true" className="relative h-10 sm:h-12">
-      <span className="absolute left-1/2 top-0 h-full w-0.5 -translate-x-1/2 rounded-full bg-primary/30" />
-      <span className="absolute left-[calc((100%-4rem)/6)] top-0 hidden h-1/2 w-0.5 -translate-x-1/2 rounded-full bg-primary/30 sm:block" />
-      <span className="absolute right-[calc((100%-4rem)/6)] top-0 hidden h-1/2 w-0.5 translate-x-1/2 rounded-full bg-primary/30 sm:block" />
-      <span className="absolute left-[calc((100%-4rem)/6)] right-[calc((100%-4rem)/6)] top-1/2 hidden h-0.5 -translate-y-1/2 rounded-full bg-primary/30 sm:block" />
-    </div>
-  )
-}
-
-/**
  * How the Vamo products fit together: two Expo apps and a Next.js website on one
  * Supabase backend, then the two pieces Jacob owns.
  */
@@ -47,7 +53,7 @@ export function HowItsBuilt() {
         {clients.map((client) => (
           <FadeIn key={client.name} blur className="flex">
             <article className="glass glow w-full rounded-[1.75rem] p-6 text-center">
-              <p className="font-display text-xs font-semibold uppercase tracking-[0.14em] text-accent">
+              <p className="font-display text-xs font-semibold tracking-[0.14em] text-accent uppercase">
                 {client.platform}
               </p>
               <h3 className="mt-2 font-display text-xl font-semibold text-ink">
@@ -62,23 +68,27 @@ export function HowItsBuilt() {
       <Connector />
 
       <FadeIn blur>
-        <article className="well rounded-[1.75rem] p-6 text-center sm:p-8">
-          <p className="font-display text-xs font-semibold uppercase tracking-[0.14em] text-accent">
+        <article className="glass glow rounded-[1.75rem] bg-linear-to-b from-primary/6 to-transparent p-6 text-center sm:p-8">
+          <p className="font-display text-xs font-semibold tracking-[0.14em] text-accent uppercase">
             Supabase
           </p>
           <h3 className="mt-2 font-display text-2xl font-semibold text-ink">
             One shared backend
           </h3>
-          <ul
-            role="list"
-            className="mt-5 flex flex-wrap justify-center gap-2 sm:gap-3"
-          >
-            {backend.map((item) => (
-              <li key={item} className="chip chip-lg">
-                {item}
-              </li>
+          <div className="mt-8 grid gap-8 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
+            {backend.map((group) => (
+              <div key={group.title}>
+                <h4 className="text-xs font-semibold tracking-[0.14em] text-muted uppercase">
+                  {group.title}
+                </h4>
+                <ChipList
+                  items={group.items}
+                  aria-label={group.title}
+                  className="mt-4 justify-center gap-2"
+                />
+              </div>
             ))}
-          </ul>
+          </div>
         </article>
       </FadeIn>
 

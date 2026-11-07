@@ -1,22 +1,10 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import clsx from 'clsx'
+import { useTheme } from '@/lib/useTheme'
 
 const storageKey = 'theme'
-
-type ViewTransition = { ready: Promise<void> }
-
-type DocumentWithViewTransitions = Document & {
-  startViewTransition: (update: () => void) => ViewTransition
-}
-
-/** TypeScript 5.3's DOM types don't include the View Transitions API yet. */
-function supportsViewTransitions(
-  doc: Document,
-): doc is DocumentWithViewTransitions {
-  return 'startViewTransition' in doc
-}
 
 function SunIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
   return (
@@ -45,16 +33,13 @@ function MoonIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
 
 /** Light/dark switch. The knob position is pure CSS (`dark:`), so it never flashes on load. */
 export function ThemeToggle({ className }: { className?: string }) {
-  let [isDark, setIsDark] = useState(false)
+  let isDark = useTheme() === 'dark'
 
   useEffect(() => {
-    setIsDark(document.documentElement.classList.contains('dark'))
-
     let media = window.matchMedia('(prefers-color-scheme: dark)')
     function onSystemChange(event: MediaQueryListEvent) {
       if (localStorage.getItem(storageKey)) return
       document.documentElement.classList.toggle('dark', event.matches)
-      setIsDark(event.matches)
     }
     media.addEventListener('change', onSystemChange)
     return () => media.removeEventListener('change', onSystemChange)
@@ -65,7 +50,6 @@ export function ThemeToggle({ className }: { className?: string }) {
     try {
       localStorage.setItem(storageKey, next ? 'dark' : 'light')
     } catch {}
-    setIsDark(next)
   }
 
   /**
@@ -78,7 +62,7 @@ export function ThemeToggle({ className }: { className?: string }) {
       '(prefers-reduced-motion: reduce)',
     ).matches
 
-    if (!supportsViewTransitions(document) || reduceMotion) {
+    if (!('startViewTransition' in document) || reduceMotion) {
       applyTheme(next)
       return
     }
@@ -119,11 +103,11 @@ export function ThemeToggle({ className }: { className?: string }) {
       aria-label="Dark mode"
       onClick={toggle}
       className={clsx(
-        'well relative inline-flex h-11 w-[4.75rem] shrink-0 items-center rounded-full p-1 transition-colors',
+        'well relative inline-flex h-11 w-19 shrink-0 items-center rounded-full p-1 transition-colors',
         className,
       )}
     >
-      <span className="flex h-9 w-9 items-center justify-center rounded-full bg-white text-accent shadow-[0_2px_8px_rgb(var(--shadow)/0.22)] transition-transform duration-200 ease-apple-out dark:translate-x-8 dark:bg-white/[0.12] dark:text-primary-text">
+      <span className="flex h-9 w-9 items-center justify-center rounded-full bg-white text-accent shadow-[0_2px_8px_rgb(var(--shadow)/0.22)] transition-transform duration-200 ease-apple-out dark:translate-x-8 dark:bg-white/12 dark:text-primary-text">
         <SunIcon className="h-5 w-5 dark:hidden" />
         <MoonIcon className="hidden h-5 w-5 dark:block" />
       </span>

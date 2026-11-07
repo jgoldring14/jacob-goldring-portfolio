@@ -5,7 +5,7 @@ import { FadeIn } from '@/components/FadeIn'
 export default function NotFound() {
   return (
     <Container className="flex h-full items-center pt-24 sm:pt-32 lg:pt-40">
-      <FadeIn className="glass mx-auto flex max-w-xl flex-col items-center rounded-[2rem] px-8 py-12 text-center sm:px-16">
+      <FadeIn className="glass mx-auto flex max-w-xl flex-col items-center rounded-4xl px-8 py-12 text-center sm:px-16">
         <p className="well flex h-28 w-40 items-center justify-center rounded-[1.75rem] font-display text-5xl font-semibold text-accent">
           404
         </p>
